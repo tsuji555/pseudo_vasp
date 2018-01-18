@@ -1,4 +1,6 @@
 require "pseudo_vasp/version"
+require "pseudo_vasp/eam"
+require 'scanf'
 require "thor"
 
 module PseudoVasp
@@ -15,6 +17,9 @@ module PseudoVasp
       puts PseudoVasp::VERSION
     end
 
-
+    desc 'eam', 'calc eam'
+    def eam(*argv)
+      model = EAM.new(argv[0])
+    end
   end
 end
