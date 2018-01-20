@@ -14,18 +14,18 @@ class EAM
   def return_data
     data = []
     @atoms[0..@n_atoms - 1].each_with_index do |iatom, i|
-      data << EAMData.new(*iatom.pos, iatom.nl, atom_energy(i))
+      data << EAMData.new(*iatom.pos, iatom.nl, atom_energy(i)[0])
     end
     data
   end
 
   def show_atom
     @atoms[0..@n_atoms - 1].each_with_index do |iatom, i|
-      ene = atom_energy(i)
+      ene, rep, bind = atom_energy(i)
       printf('%4d %10.5f %10.5f %10.5f',
              i, iatom.pos[0], iatom.pos[1], iatom.pos[2])
-      printf("%4d %10.5f %6.3f\n",
-             iatom.nl.size, ene, ene + 3.39)
+      printf("%4d %10.5f %6.3f %10.5f %10.5f %4.2f\n",
+             iatom.nl.size, ene, ene + 3.39, rep, bind, -rep/bind)
     end
   end
 
@@ -99,19 +99,22 @@ class EAM
   POQ = 2.893854749
   Q = 0.7423170267
   # for phi(r0)=-3.39, Ev=0.8, p=3.0 at r0, r0=2.8577
-  CUT_OFF = 4.0 * 0.82
+  CUT_OFF = 4.0414 * 0.82
+
+  include Math
 
   def atom_energy(i)
-    ene = 0.0
     rho = 0.0
+    rep = 0.0
     ai = @atoms[i]
     ai.nl.each do |j|
       r = distance(ai.pos, @atoms[j].pos)
-      ene += A0 * Math.exp(-P * r)
-      h = B0 * Math.exp(-Q * r)
+      rep += A0 * exp(-P * r)
+      h = B0 * exp(-Q * r)
       rho += h * h
     end
-    ene - Math.sqrt(rho)
+    bind = - sqrt(rho)
+    [rep+bind, rep, bind]
   end
 end
 
