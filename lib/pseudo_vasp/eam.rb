@@ -1,6 +1,6 @@
 # pseudo vasp using eam with nearest neighbor model
 class EAM
-  attr_reader :lt
+  attr_reader :lt, :lt0
   def initialize(file)
     lines = File.readlines(file)
     @log = lines[0]
@@ -9,6 +9,34 @@ class EAM
     extend_z
     mk_nl
     show_atom
+  end
+
+  def read_lt(lines)
+    @lt = []
+    @lt0 = []
+    lines[2..4].each_with_index do |line, i|
+      @lt << line.scanf(' %f %f %f')[i]
+      @lt0 << line.scanf(' %f %f %f')[i]
+    end
+    p @lt
+    p @lt0
+  end
+
+  def set_cell_size(x=0.0, y=0.0, z=0.0)
+    @lt[0] = @lt0[0]*(x)
+  end
+
+  def show_lt
+    p @lt
+  end
+
+  def total_energy
+    sum = 0.0
+    @atoms[0..@n_atoms - 1].each_with_index do |iatom, i|
+      ene, rep, bind = atom_energy(i)
+      sum += ene
+    end
+    return sum
   end
 
   def return_data
@@ -73,14 +101,6 @@ class EAM
       tmp += x * x
     end
     Math.sqrt(tmp)
-  end
-
-  def read_lt(lines)
-    @lt = []
-    lines[2..4].each_with_index do |line, i|
-      @lt << line.scanf(' %f %f %f')[i]
-    end
-    p @lt
   end
 
   def mk_atoms(lines)
