@@ -5,16 +5,15 @@ model = EAM.new(file)
 
 dx = 0.01
 dy = 0.01
-dz = 0.01
-n = 3
-x = 1.0-((n-1)/2+1)*dx
-y = 1.0-((n-1)/2+1)*dy
-z = 1.0-((n-1)/2+1)*dz
-n.times do
-  p x += dx
-  p y += dy
-  p z += dz
-  model.set_cell_size(x,y,z)
-  model.show_lt
-  p model.total_energy
+n = 5
+x0 = 1.0-((n-1)/2+1)*dx
+y0 = 1.0-((n-1)/2+1)*dy
+n.times do |i|
+  n.times do |j|
+    x = x0 + dx*i
+    y = y0 + dy*j
+    printf("%5.2f, %5.2f, ", x-1, y-1)
+    model.set_cell_size(x,y)
+    printf("%10.5f\n",  model.total_energy)
+  end
 end

@@ -8,7 +8,7 @@ class EAM
     mk_atoms(lines)
     extend_z
     mk_nl
-    show_atom
+#    show_atom
   end
 
   def read_lt(lines)
@@ -18,11 +18,9 @@ class EAM
       @lt << line.scanf(' %f %f %f')[i]
       @lt0 << line.scanf(' %f %f %f')[i]
     end
-    p @lt
-    p @lt0
   end
 
-  def set_cell_size(x=0.0, y=0.0, z=0.0)
+  def set_cell_size(x=1.0, y=1.0, z=1.0)
     @lt[0] = @lt0[0]*(x)
     @lt[1] = @lt0[1]*(y)
     @lt[2] = @lt0[2]*(z)
