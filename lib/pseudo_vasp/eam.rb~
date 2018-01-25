@@ -24,8 +24,8 @@ class EAM
 
   def set_cell_size(x=0.0, y=0.0, z=0.0)
     @lt[0] = @lt0[0]*(x)
-    @lt[1] = @lt0[1]*(y)
-    @lt[2] = @lt0[2]*(z)
+    @lt[0] = @lt0[0]*(y)
+    @lt[0] = @lt0[0]*(z)
   end
 
   def show_lt
