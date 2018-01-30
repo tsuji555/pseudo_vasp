@@ -4,18 +4,26 @@ require 'scanf'
 GOLD = 1.618034
 TINY = 1.0e-20
 GLIMIT = 100.0
-$count = 0
 
-def func(ax)
-  p $count+=1
+def print_set(ax, bx, cx, fa, fb, fc, head='')
+  printf("#{head}_x:=[%7.4f, %7.4f, %7.4f];",ax,bx,cx)
+  printf("#{head}_y:=[%7.4f, %7.4f, %7.4f];\n",fa,fb,fc)
+end
+
+def func_0(ax)
+  $n_calc+=1
   res =  1.0*(ax-1.0)*(ax-1.0)
   puts ax.to_s+":"+res.to_s
   res
-#  $model.set_cell_size(ax)
-#  $model.total_energy
 end
 
-def shift(ax, bx, fa, fb)
+def func(ax)
+  $n_calc+=1
+  $model.set_cell_size(ax)
+  $model.total_energy+150.45633275921924
+end
+
+def swap_x_f(ax, bx, fa, fb)
   dumx, dumf = ax, fa
   ax, fa = bx, fb
   bx, fb = dumx, dumf
@@ -33,22 +41,24 @@ end
 
 # mnbrak, coding from Num Recipe in C
 def mnbrak(ax, bx)
-  p ax
-  p bx
-  p fa = func(ax)
-  p fb = func(bx)
-  if fa>fb
-    ax, bx, fa, fb = shift(ax, bx, fa, fb)
+  printf("init range:%10.5f-%10.5f\n",ax,bx)
+  $n_calc = 0
+
+  fa = func(ax)
+  fb = func(bx)
+  if fa<fb
+    ax, bx, fa, fb = swap_x_f(ax, bx, fa, fb)
   end
-  p cx = bx + GOLD*(bx-ax)
-  p fc = func(cx)
-  p [ax, bx, cx, fa, fb, fc]
+  cx = bx + GOLD*(bx-ax)
+  fc = func(cx)
+  print_set(ax, bx, cx, fa, fb, fc, ' init')
+
   while (fb > fc) do
-    p r = (bx-ax)*(fb-fc)
-    p q = (bx- cx)*(fb-fa)
-    p u = bx - ((bx-cx)*q-(bx-ax)*r)/
+    r = (bx-ax)*(fb-fc)
+    q = (bx- cx)*(fb-fa)
+    u = bx - ((bx-cx)*q-(bx-ax)*r)/
       (2.0*sign(fmax( (q-r).abs, TINY),q-r))
-    p ulim = bx + GLIMIT*(cx-bx)
+    ulim = bx + GLIMIT*(cx-bx)
 
     if ((bx-u)*(u-cx) > 0.0)
       fu = func(u)
@@ -88,17 +98,18 @@ def mnbrak(ax, bx)
     fa=fb
     fb=fc
     fc=fu
-    p [ax, bx, cx, fa, fb, fc]
   end
-  p [ax, bx, cx, fa, fb, fc]
+  print_set(ax, bx, cx, fa, fb, fc,'final')
+  printf("n_calc:%4d\n\n",$n_calc)
 end
 
 file = './POSCAR_0_3315_46_Al'
 $model = EAM.new(file)
 
-mnbrak(0.98, 0.99)
 mnbrak(1.0, 1.02)
+mnbrak(0.98, 0.99)
+mnbrak(0.97, 0.975)
+mnbrak(0.97, 0.972)
+mnbrak(0.97, 0.971)
+mnbrak(0.97, 1.001)
 
-[0.98,0.99,1.0,1.01,1.02].each do |x|
-  printf("%5.2f %10.5f\n",x, func(x))
-end
