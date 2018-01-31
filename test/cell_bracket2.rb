@@ -1,13 +1,14 @@
-require '../lib/pseudo_vasp/eam'
+require_relative '../lib/pseudo_vasp/eam'
 require 'scanf'
 
 GOLD = 1.618034
 TINY = 1.0e-20
 GLIMIT = 100.0
 
-def print_set(ax, bx, cx, fa, fb, fc, head='')
-  printf("#{head}_x:=[%7.4f, %7.4f, %7.4f];",ax,bx,cx)
-  printf("#{head}_y:=[%7.4f, %7.4f, %7.4f];\n",fa,fb,fc)
+def val_set(ax, bx, cx, fa, fb, fc, head='')
+  cont = sprintf("#{head}_x:=[%7.4f, %7.4f, %7.4f];",ax,bx,cx)
+  cont << sprintf("#{head}_y:=[%7.4f, %7.4f, %7.4f];\n",fa,fb,fc)
+  cont
 end
 
 def func_0(ax)
@@ -51,7 +52,7 @@ def mnbrak(ax, bx)
   end
   cx = bx + GOLD*(bx-ax)
   fc = func(cx)
-  print_set(ax, bx, cx, fa, fb, fc, ' init')
+  print val_set(ax, bx, cx, fa, fb, fc, ' init')
 
   while (fb > fc) do
     r = (bx-ax)*(fb-fc)
@@ -99,17 +100,19 @@ def mnbrak(ax, bx)
     fb=fc
     fc=fu
   end
-  print_set(ax, bx, cx, fa, fb, fc,'final')
+  print final = val_set(ax, bx, cx, fa, fb, fc,'final')
   printf("n_calc:%4d\n\n",$n_calc)
+  return final
 end
 
-file = './POSCAR_0_3315_46_Al'
-$model = EAM.new(file)
-
-mnbrak(1.0, 1.02)
-mnbrak(0.98, 0.99)
-mnbrak(0.97, 0.975)
-mnbrak(0.97, 0.972)
-mnbrak(0.97, 0.971)
-mnbrak(0.97, 1.001)
+if $0 == __FILE__
+  file = './POSCAR_0_3315_46_Al'
+  $model = EAM.new(file)
+  mnbrak(1.0, 1.02)
+  mnbrak(0.98, 0.99)
+  mnbrak(0.97, 0.975)
+  mnbrak(0.97, 0.972)
+  mnbrak(0.97, 0.971)
+  mnbrak(0.97, 1.001)
+end
 

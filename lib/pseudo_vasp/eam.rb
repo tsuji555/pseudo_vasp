@@ -1,4 +1,7 @@
 # pseudo vasp using eam with nearest neighbor model
+
+EAMData = Struct.new(:x, :y, :z, :nl, :ene)
+
 class EAM
   attr_reader :lt, :lt0
   def initialize(file)
