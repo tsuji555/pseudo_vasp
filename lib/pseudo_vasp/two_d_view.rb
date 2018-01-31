@@ -17,6 +17,8 @@ class TwoDView < Viewer
     @normalized_nl = normalize(@nl, rev: true)
     @ene = data.inject([]) { |ret, idata| ret << idata[:ene] }
     @normalized_ene = normalize(@ene)
+    @ratio = data.inject([]) { |ret, idata| ret << idata[:ratio] }
+    @normalized_ratio = normalize(@ratio)
     super(@pos)
   end
 
@@ -50,6 +52,7 @@ class TwoDView < Viewer
           val = case opts[:val]
                 when :ene then @normalized_ene[i]
                 when :nl then @normalized_nl[i]
+                when :ratio then @normalized_ratio[i]
                 end
           rgb = hsv_to_rgb(val, 100, 100)
           @context.set_source_rgb(*rgb)

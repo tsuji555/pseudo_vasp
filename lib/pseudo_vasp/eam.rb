@@ -1,6 +1,6 @@
 # pseudo vasp using eam with nearest neighbor model
 
-EAMData = Struct.new(:x, :y, :z, :nl, :ene)
+EAMData = Struct.new(:x, :y, :z, :nl, :ene, :ratio)
 
 class EAM
   attr_reader :lt, :lt0
@@ -45,7 +45,9 @@ class EAM
   def return_data
     data = []
     @atoms[0..@n_atoms - 1].each_with_index do |iatom, i|
-      data << EAMData.new(*iatom.pos, iatom.nl, atom_energy(i)[0])
+      ene, rep, bind = atom_energy(i)
+      ratio = -rep/bind
+      data << EAMData.new(*iatom.pos, iatom.nl, ene, ratio)
     end
     data
   end

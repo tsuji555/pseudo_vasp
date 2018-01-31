@@ -9,7 +9,7 @@ $model = EAM.new(file)
 
 @view = TwoDView.new($model.return_data)
 @view.set_data(x_lat: $model.lt[0], y_lat: $model.lt[1], cx: 20, scale: 4)
-@view.draw_atom_by_val(1)
+@view.draw_atom_by_val(1, val: :ratio)
 @view.finish
 system('open -a safari view.svg')
       
