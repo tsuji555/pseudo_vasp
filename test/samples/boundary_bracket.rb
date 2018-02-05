@@ -1,4 +1,4 @@
-require_relative '../lib/pseudo_vasp/eam'
+require '../lib/pseudo_vasp/eam'
 require 'scanf'
 
 GOLD = 1.618034
@@ -107,6 +107,7 @@ end
 
 if $0 == __FILE__
   file = './POSCAR_0_3315_46_Al'
+  file = './POSCAR_0_3315_46_inner_relax_-4_1'
   $model = EAM.new(file)
   mnbrak(1.0, 1.02)
   mnbrak(0.98, 0.99)

@@ -1,0 +1,45 @@
+#!/usr/bin/env ruby
+require_relative '../lib/pseudo_vasp/eam'
+require_relative '../lib/pseudo_vasp/viewer'
+require_relative '../lib/pseudo_vasp/two_d_view'
+require 'scanf'
+require 'thor'
+
+module EAMCalc
+  class CLI < Thor
+    desc 'hello NAME','hello name'
+    def hello(*argv)
+      puts "hello #{argv}"
+    end
+
+    desc 'ev_curve','calc Energy-Volume curve with rep/bind ratio'
+    def ev_curve
+      system 'ruby samples/eam.rb'
+    end
+
+    desc 'show_atom FILE','show atom infor of FILE(default is 3315_inner_realx)'
+    def show_atom(*argv)
+      file = argv[0] || './POSCAR_0_3315_46_inner_relax_-4_1'
+      $model = EAM.new(file)
+      $model.show_atom
+      print "\n data for atom 0\n"
+      $model.show_atom_at(0)
+    end
+
+    desc 'view', 'viewing example for eam analyser'
+    def view
+      file = './POSCAR_0_3315_46_inner_relax_-4_1'
+      #file = './POSCAR_0_3315_46_Al'
+      $model = EAM.new(file)
+      @view = TwoDView.new($model.return_data)
+      @view.set_data(x_lat: $model.lt[0], y_lat: $model.lt[1], cx: 20, scale: 4)
+      @view.draw_atom_by_val(1, val: :ratio) #1st for  single(0) or periodic(1),
+                                             #2nd in :nl, :ene, :ratio
+      @view.finish
+      system('open -a safari view.svg')
+      # system('rm view.svg')
+    end
+  end
+end
+
+EAMCalc::CLI.start(ARGV)

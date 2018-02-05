@@ -1,0 +1,29 @@
+#!/usr/bin/env ruby
+require 'thor'
+
+module BoundaryRelax
+  class CLI < Thor
+    desc 'hello NAME','hello name'
+    def hello(*argv)
+      puts "hello #{argv[0]}."
+    end
+
+    desc 'calc_e_surface','calc energy surface of boundary cell'
+    def calc_e_surface
+      system 'ruby samples/cell_relaxation.rb'
+    end
+
+    desc 'one_d_curve','calc one dimension curve of boundary cell'
+    def one_d_curve
+      system 'ruby samples/one_d_curve.rb'
+    end
+
+    desc 'boundary_bracket','bundary bracket'
+    def boundary_bracket
+      system 'ruby samples/boundary_bracket.rb'
+    end
+  end
+end
+
+BoundaryRelax::CLI.start(ARGV)
+
