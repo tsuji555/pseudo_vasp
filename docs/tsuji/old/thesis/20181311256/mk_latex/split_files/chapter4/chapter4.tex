@@ -1,0 +1,388 @@
+\chapter{構造最適化}\label{ux69cbux9020ux6700ux9069ux5316}
+
+    \section{背景}\label{ux80ccux666f}
+
+構造最適化が何故必要となるかを初めに詳しく記しておく．
+
+    \subsection{VASPの構造最適化ルーチン}\label{vaspux306eux69cbux9020ux6700ux9069ux5316ux30ebux30fcux30c1ux30f3}
+
+図はAlの3315で作成したモデルのtop
+viewである．これを緩和させて最安定エネルギーを求める．
+このためには内部の原子配置と，外部のセル形状の両方を緩和させる必要がある．
+今後これらをそれぞれ内部緩和，外部緩和と呼んでいく．
+
+\begin{figure}[H][htbp]
+\centering
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/POSCAR_0_3315_46_Al.png}
+\end{center}
+\caption{{}}
+
+\label{fig:This}
+\end{figure}
+
+一般的な第一原理計算では構造最適化のルーチンが用意されている．
+我々が使用しているVASPにおいて用意されているルーチンは表の通りである．
+
+\begin{longtable}[]{@{}llllll@{}}
+\toprule
+ISIF & force & stress tensor & ions & cell shape & cell
+volume\tabularnewline
+\midrule
+\endhead
+0 & yes & no & yes & no & no\tabularnewline
+1 & yes & trace only* & yes & no & no\tabularnewline
+2 & yes & yes & yes & no & no\tabularnewline
+3 & yes & yes & yes & yes & yes\tabularnewline
+4 & yes & yes & yes & yes & no\tabularnewline
+5 & yes & yes & no & yes & no\tabularnewline
+6 & yes & yes & no & yes & yes\tabularnewline
+7 & yes & yes & no & no & yes\tabularnewline
+\bottomrule
+\end{longtable}
+
+\begin{itemize}
+\tightlist
+\item
+  Trace only means that only the total pressure, i.e. the line
+  http://cms.mpi.univie.ac.at/vasp/guide/node112.html
+\end{itemize}
+
+VASPの呼称ではionが内部原子を，cellが外部セル形状を意味する．
+
+例えば，ISIF=0ではion=yes，cell shape,
+volume=noとなっており，内部緩和は行うが，cellの形状と体積はfixしたままである．
+
+ISIF=7では，内部緩和をおこないセルは形状を保ったまま，体積を変化させる．
+ところが，セル形状を保ったままでの体積変化は，等方的に緩和させるようである．
+
+図はISIF=3で計算した場合の結果を示した．
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis.003.jpeg}
+\end{center}
+
+
+\label{fig:}
+粒界構造のモデルで用いられる，いびつな立方晶のセル形状から
+外部，内部緩和を全て自動で緩和させると， 外部セル形状が極端に変形する．
+いびつな立方晶のセル形状を保ったまま
+それぞれの長さを変えるようなスイッチは用意されていない．
+したがってこれを行うルーチンは，独自に開発する必要がある．
+
+    \subsection{POSCARのファイル構造}\label{poscarux306eux30d5ux30a1ux30a4ux30ebux69cbux9020}
+
+モデルとしてCu\_3315をつかう．
+これは系のサイズが小さく，第一原理計算VASPの計算時間が
+少なく済むからである．
+
+いかに，VASPの計算に投入する原子の情報を集めた
+POSCARと呼ばれるファイルである．
+
+\begin{verbatim}
+> head POSCAR_0_3315_46_Al
+(Al) Source:.POSCAR_0;Expand:3,3,1;Shaped;Rotate:1/5,22.62[degrees];Mirrorred;Shaped2;Cut:0.81715-0.84984
+   1.00000000000000
+  19.8145937137    0.0000000000    0.0000000000
+   0.0000000000   10.3035887311    0.0000000000
+   0.0000000000    0.0000000000    4.0414000000
+46
+Selective dynamics
+Direct
+   0.6000000000    0.0384615385    0.5000000000 T T T
+   0.5800000000    0.2307692308    0.0000000000 T T T
+...以下略
+\end{verbatim}
+
+3行目から5行目にかかれた3次元ベクトルがcellの外形のa,b,cを 示している．
+\(a\)が図では\(x\)軸，\(b\)が\(y\)軸，\(c\)が\(z\)軸のベクトルの
+カーテシアン座標をオングストロームで示している．
+
+さらに次の行にそのセルに含まれる原子の数(=46)が表記されている．
+それ以降の2行にキーワードがあり，
+それ以下には，それぞれの原子のローカルな相対座標が記されている．
+これがPOSCARファイルの構造である．
+
+    \subsection{vasp計算の結果}\label{vaspux8a08ux7b97ux306eux7d50ux679c}
+
+    図はAl\_3315のセルサイズ変化によるエネルギー表面を示している．
+
+\begin{figure}[H][htbp]
+\centering
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/Al_3315_surface.png}
+\end{center}
+\caption{{}}
+
+\label{fig:}
+\end{figure}
+
+    このエネルギー表面の特徴は次の通りである． 1. x=-8..0 1. y=-2..2 1.
+x軸方向の変化は大きい． 1. y軸方向の変化はねじれている．すなわち 1.
+x=0ではyの増加につれて上がっていくが， 1.
+x=-8ではyの増加につれて下がっている 1.
+x=-4の直線上でminimumを取っている．
+
+もう少し細かくエネルギー計算をした場合と，もう少し荒くエネルギー計算をした場合で，
+最小値やその位置が大きく変わるかどうかを検証する必要がある．
+
+また，この例では最小値の囲い込みがうまくいっているが，初期には
+囲い込まれていなかった．したがって，どの程度の余裕をもって
+計算の初期値とするかを決定する必要がある．
+
+    これは，計算によって得られた値を3次元プロットした結果である．
+
+\begin{longtable}[]{@{}rrr@{}}
+\toprule
+x & y & E\tabularnewline
+\midrule
+\endhead
+-8 & -2 & 0.70408\tabularnewline
+-8 & 0 & 0.62402\tabularnewline
+-8 & 2 & 0.58637\tabularnewline
+-4 & -2 & 0.54846\tabularnewline
+-4 & 0 & 0.52160\tabularnewline
+-4 & 2 & 0.52985\tabularnewline
+0 & -2 & 0.58105\tabularnewline
+0 & 0 & 0.59046\tabularnewline
+0 & 2 & 0.63185\tabularnewline
+\bottomrule
+\end{longtable}
+
+これらの値は，粒界モデルのx軸，y軸を変化させ，セル形状を固定した状態で，内部緩和をおこないエネルギー計算を行っている．
+これをfittingして，最安定構造を求めるには次のMapleスクリプトで得られる．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{x0}\NormalTok{:=-4}\KeywordTok{;y0}\NormalTok{:=0}\KeywordTok{;}
+\KeywordTok{with}\NormalTok{(stats)}\KeywordTok{:} \NormalTok{data:=[xx,yy,zz]: }
+\KeywordTok{fit1}\NormalTok{:=fit[leastsquare[[x,y,z], }
+    \OtherTok{z=}\NormalTok{a1+a2}\KeywordTok{*}\NormalTok{(x-x0)}\KeywordTok{+a3*}\NormalTok{(y-y0)}\KeywordTok{+a4*}\NormalTok{(x-x0)}\KeywordTok{*}\NormalTok{(y-y0)}\KeywordTok{+}
+      \KeywordTok{a5*}\NormalTok{(x-x0)^}\KeywordTok{2+a6*}\NormalTok{(y-y0)^}\KeywordTok{2}\NormalTok{, }
+    \DataTypeTok{\{a1,a2,a3,a4,a5,a6\}}\NormalTok{]]}\KeywordTok{(data)}\NormalTok{;}
+
+\KeywordTok{fit1} \NormalTok{:= z = .5026144708-0.4629870219e-2*x-0.7128049500e-2*y+}
+\KeywordTok{(0.5266188957e-2*}\NormalTok{(x+4}\KeywordTok{)}\NormalTok{)}\KeywordTok{*y+0.5395943477e-2*}\NormalTok{(x+4)^}\KeywordTok{2+0.4563284219e-2*y}\NormalTok{^2}
+\end{Highlighting}
+\end{Shaded}
+
+これで求められた関数fit1をx,yで微分し，連立方程式として解くと
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{e1}\NormalTok{:=diff(f1(x,y),}\KeywordTok{x}\NormalTok{);}
+\KeywordTok{e2}\NormalTok{:=diff(f1(x,y),}\KeywordTok{y}\NormalTok{);}
+\KeywordTok{s1}\NormalTok{:=solve(}\DataTypeTok{\{e1,e2\},\{x,y\}}\NormalTok{);}
+       \KeywordTok{0.03853767760} \NormalTok{+ 0.005266188957 y + 0.01079188695 x}
+      \KeywordTok{0.01393670633} \NormalTok{+ 0.005266188957 x + 0.009126568438 y}
+              \NormalTok{\{}\KeywordTok{x} \NormalTok{= -3.933335758, y = 0.7425554356\}}
+\KeywordTok{subs}\NormalTok{(s1,f1(x,y));}
+                          \KeywordTok{0.5183331423}
+\end{Highlighting}
+\end{Shaded}
+
+として求めることが可能である．
+
+この最安定構造をできるだけ少ない手数で求めることが開発目標となる．
+
+ところがこれらの結果はVASPによって得られたエネルギー値を示している．
+VASPはこの程度の計算であっても，一点の計算に現有の設備でAlで1時間50分程度，Cuの計算では6時間程度が必要となる{[}参照:藤村{]}．
+これを開発段階で使っていては応答時間が長すぎるため，現実的ではない．
+そこで，計算時間が劇的に短い経験ポテンシャルであるEAMを使って開発を進める．
+
+    \section{手法}\label{ux624bux6cd5}
+
+\subsection{EAM}\label{eam}
+
+eamはembedding atom methodと呼ばれる原子間のポテンシャルで．．．
+ここ書きや．
+
+    \subsection{ディレクトリー構造}\label{ux30c7ux30a3ux30ecux30afux30c8ux30eaux30fcux69cbux9020}
+
+pseudo\_vaspに関連するファイルを作成する．
+
+\begin{verbatim}
+tree pseudo_vasp
+.
+├── CODE_OF_CONDUCT.md
+├── Gemfile
+├── Gemfile.lock
+├── LICENSE.txt
+├── README.md
+├── Rakefile
+├── bin
+│   ├── console
+│   └── setup
+├── docs
+├── exe
+│   └── pseudo_vasp
+├── lib
+│   ├── pseudo_vasp
+│   │   ├── eam.rb
+│   │   └── version.rb
+│   └── pseudo_vasp.rb
+├── pseudo_vasp.gemspec
+└── test
+    ├── POSCAR_0
+    ├── POSCAR_0_3315_46_Al
+    ├── cell_bracket.rb
+    ├── cell_relaxation.rb
+    ├── eam.rb
+    ├── pseudo_vasp_test.rb
+    └── test_helper.rb
+
+6 directories, 21 files
+\end{verbatim}
+
+これは，ruby gemsのライブラリーの標準構成で，
+
+\begin{quote}
+bundler gem init -b pseudo\_vasp
+\end{quote}
+で作成された．
+
+libの中にeamポテンシャルのcodeが入っている．
+testにはそれぞれの計算駆動codeを置いている． それらは，
+
+\begin{verbatim}
+eam.rb                eamのe-v曲線
+cell_relaxation.rb    外部cell変形のエネルギー
+cell_bracket.rb       cell緩和の囲い込み
+\end{verbatim}
+
+である．
+
+    \section{結果}\label{ux7d50ux679c}
+
+    \subsection{囲い込み}\label{ux56f2ux3044ux8fbcux307f}
+
+一般的な数値計算における最適化の最初の一歩は解の囲い込みである．
+数値計算のバイブルNumerical
+recipeにはそのための標準ルーチンとしてmnbrakが用意されている．
+そこで，まずはこれをrubyで実装した．
+
+"Numerical Recipes in C", by W.H.Press他,(技術評論社, 1993), pp.285-289
+
+結果は次の通りである．
+
+\begin{verbatim}
+[1]init range:   1.00000-   1.02000
+ init_x:=[ 1.0200,  1.0000,  0.9676]; init_y:=[ 0.2414,  0.0000,  1.1178];
+final_x:=[ 1.0200,  1.0000,  0.9676];final_y:=[ 0.2414,  0.0000,  1.1178];
+n_calc:   3
+
+[2]init range:   0.98000-   0.99000
+ init_x:=[ 0.9800,  0.9900,  1.0062]; init_y:=[ 0.3041,  0.0454,  0.0404];
+final_x:=[ 0.9900,  0.9982,  1.0062];final_y:=[ 0.0454, -0.0033,  0.0404];
+n_calc:   4
+
+[3]init range:   0.97000-   0.97500
+ init_x:=[ 0.9700,  0.9750,  0.9831]; init_y:=[ 0.9058,  0.5516,  0.1947];
+final_x:=[ 0.9898,  0.9974,  1.0008];final_y:=[ 0.0475, -0.0034,  0.0027];
+n_calc:   6
+
+[4]init range:   0.97000-   0.97200
+ init_x:=[ 0.9700,  0.9720,  0.9752]; init_y:=[ 0.9058,  0.7497,  0.5377];
+final_x:=[ 0.9873,  0.9981,  1.0068];final_y:=[ 0.0900, -0.0034,  0.0465];
+n_calc:   6
+
+[5]init range:   0.97000-   0.97100
+ init_x:=[ 0.9700,  0.9710,  0.9726]; init_y:=[ 0.9058,  0.8252,  0.7055];
+final_x:=[ 0.9864,  0.9984,  1.0088];final_y:=[ 0.1075, -0.0032,  0.0688];
+n_calc:   6
+
+[6]init range:   0.97000-   1.00100
+ init_x:=[ 0.9700,  1.0010,  1.0512]; init_y:=[ 0.9058,  0.0036,  0.8926];
+final_x:=[ 0.9700,  1.0010,  1.0512];final_y:=[ 0.9058,  0.0036,  0.8926];
+n_calc:   3
+\end{verbatim}
+
+テストケース{[}1{]},{[}6{]}は，計算結果からわかる通り初期値とさらにcx =
+bx + GOLD*(bx-ax)で求められる値を計算するだけで囲い込みが成功している．
+
+テストケース{[}2{]}は，初期の3点では囲い込んでいるかがわからず中簡点を追加計算することで求めている．
+この様子を図に示した．初期の3点は赤丸で，最終結果の3点を青丸で示している．初期の3点の中間に，青丸で示した4つ目の計算結果が追加されている．
+
+一方，テストケース{[}4{]}-{[}6{]}は囲い込みが初期の3点ではうまくいっておらず，だいぶ外側に外れた位置での計算が必要となっている．初期値のステップの大小によるロスはmnbrakの計算ルーチンによってうまく回避されている(図(b),(c))．
+
+\begin{figure}[H][htbp]
+\centering
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis.006.jpeg}
+\end{center}
+\caption{{}}
+
+\label{fig:}
+\end{figure}
+
+初期値の取り方を間違うと最大6になるが，
+概ね，囲い込みは効率良くmnbrakによって可能であることが確認できた．．
+そこで，このルーチンをそのまま使ってこの後の開発を進めることとした．
+
+    \subsection{界面エネルギーへの変換}\label{ux754cux9762ux30a8ux30cdux30ebux30aeux30fcux3078ux306eux5909ux63db}
+
+次に示すコードは計算サーバに用意されているRakefile内で
+VASP計算結果から表面エネルギーを求めるメソッドである．
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def} \NormalTok{calc_df_es(n_atom, lat_c)}
+  \NormalTok{_status, stdout, = systemu(}\StringTok{"tail inner_*.o* |grep 'F='"}\NormalTok{)}
+  \NormalTok{df = stdout.scan(}\OtherTok{/F=(.+) E0/}\NormalTok{)[}\DecValTok{0}\NormalTok{][}\DecValTok{0}\NormalTok{].to_f}
+  \NormalTok{de = df - n_atom * -}\FloatTok{3.739501247}
+  \NormalTok{ss = lat_c[}\DecValTok{1}\NormalTok{] * lat_c[}\DecValTok{2}\NormalTok{]}
+  \NormalTok{es = de / ss * }\FloatTok{1.60218} \NormalTok{* }\DecValTok{10} \NormalTok{/ }\DecValTok{2}
+  \NormalTok{df.to_s + }\StringTok{' '} \NormalTok{+ es.to_s + }\StringTok{"\textbackslash{}n"}
+\KeywordTok{end}
+\end{Highlighting}
+\end{Shaded}
+
+ここで，lat\_c{[}1{]},
+lat\_c{[}2{]}に\(a,b\)軸の値が，ssに界面の面積が，
+dfにVASPで求められたエネルギー値が，
+n\_atomに原子数が入っている．esでは得られた界面エネルギー(\(dE/S\))を
+"{[}eV/A\^{}2{]}"から"{[}J/m\^{}2{]}"に変換している．
+分母の2はユニットセル内に2枚の界面があるためにその数で割っている．
+
+この出力をとると，
+
+\begin{verbatim}
+#i  j  dE  
+  -6   -1   18.62572   10.20055    4.04140 -168.48987 0.6854160866046254
+  -6    0   18.62572   10.30359    4.04140 -168.56613 0.6638909918907453
+  -6    1   18.62572   10.40662    4.04140 -168.59626 0.6515787808351412
+...
+\end{verbatim}
+
+となる．これに対応して，pseudo\_vaspの出力を調整して，
+
+\begin{verbatim}
+  -2   -2  19.81459   10.30359    4.04140 -150.03001   0.24146     
+  -2   -1  19.81459   10.30359    4.04140 -150.15656   0.23390     
+  -2    0  19.81459   10.30359    4.04140 -150.15225   0.23173     
+  -2    1  19.81459   10.30359    4.04140 -150.04017   0.23388     
+  -2    2  19.81459   10.30359    4.04140 -149.84182   0.23938     
+  -1   -2  19.81459   10.30359    4.04140 -150.32396   0.22713     
+  -1   -1  19.81459   10.30359    4.04140 -150.43100   0.22055     
+  -1    0  19.81459   10.30359    4.04140 -150.41091   0.21914     
+  -1    1  19.81459   10.30359    4.04140 -150.28600   0.22187     
+  -1    2  19.81459   10.30359    4.04140 -150.07716   0.22781     
+   0   -2  19.81459   10.30359    4.04140 -150.39718   0.22193     
+   0   -1  19.81459   10.30359    4.04140 -150.48888   0.21605     
+   0    0  19.81459   10.30359    4.04140 -150.45633   0.21517     
+   0    1  19.81459   10.30359    4.04140 -150.32128   0.21828     
+   0    2  19.81459   10.30359    4.04140 -150.10416   0.22450     
+   1   -2  19.81459   10.30359    4.04140 -150.33460   0.22221     
+   1   -1  19.81459   10.30359    4.04140 -150.41477   0.21682     
+   1    0  19.81459   10.30359    4.04140 -150.37283   0.21628     
+   1    1  19.81459   10.30359    4.04140 -150.23011   0.21963     
+   1    2  19.81459   10.30359    4.04140 -150.00670   0.22599     
+   2   -2  19.81459   10.30359    4.04140 -150.19187   0.22564     
+   2   -1  19.81459   10.30359    4.04140 -150.26371   0.22057     
+   2    0  19.81459   10.30359    4.04140 -150.21493   0.22024     
+   2    1  19.81459   10.30359    4.04140 -150.06662   0.22370     
+   2    2  19.81459   10.30359    4.04140 -149.83865   0.23011
+\end{verbatim}
+
+とした．これでエネルギー表面を描画してほしい．
+
+    

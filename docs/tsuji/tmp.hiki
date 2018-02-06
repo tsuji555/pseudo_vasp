@@ -1,0 +1,11 @@
+|| ISIF||calculate||calculate||relax||change||change
+|| ||force||stress tensor||ions||cell shape||cell volume
+||0||yes||no||yes||no||no
+||1||yes||trace only  tex2html_wrap_inline4607||yes||no||no
+||2||yes||yes||yes||no||no
+||3||yes||yes||yes||yes||yes
+||4||yes||yes||yes||yes||no
+||5||yes||yes||no||yes||no
+||6||yes||yes||no||yes||yes
+||7||yes||yes||no||no||yes
+
