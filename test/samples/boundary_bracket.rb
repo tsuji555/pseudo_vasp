@@ -18,12 +18,6 @@ def func_0(ax)
   res
 end
 
-def func(ax)
-  $n_calc+=1
-  $model.set_cell_size(ax)
-  $model.total_energy+150.45633275921924
-end
-
 def swap_x_f(ax, bx, fa, fb)
   dumx, dumf = ax, fa
   ax, fa = bx, fb
@@ -39,6 +33,11 @@ def sign(a,b)
   b >= 0.0 ? a.abs : -a.abs
 end
 
+def func(ax)
+  $n_calc+=1
+  $model.set_cell_size(ax)
+  $model.total_energy+150.45633275921924
+end
 
 # mnbrak, coding from Num Recipe in C
 def mnbrak(ax, bx)
@@ -107,7 +106,7 @@ end
 
 if $0 == __FILE__
   file = './POSCAR_0_3315_46_Al'
-  file = './POSCAR_0_3315_46_inner_relax_-4_1'
+#  file = './POSCAR_0_3315_46_inner_relax_-4_1'
   $model = EAM.new(file)
   mnbrak(1.0, 1.02)
   mnbrak(0.98, 0.99)

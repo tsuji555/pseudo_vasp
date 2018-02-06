@@ -14,10 +14,13 @@ n = 5
 x0 = 1.0-((n-1)/2)*dx
 y0 = 1.0-((n-1)/2)*dy
 
+xx,yy,zz=[],[],[]
 n.times do |i|
   n.times do |j|
     x = x0 + dx*i
     y = y0 + dy*j
+    xx << i-2
+    yy << j-2
     printf("%4d %4d", (x-1)*100, (y-1)*100)
     printf("%10.5f %10.5f %10.5f ", aa, bb, cc)
     model.set_cell_size(x,y)
@@ -25,7 +28,19 @@ n.times do |i|
     de = df - n_atom * (-3.39)
     ss = aa*x * bb*y
     es = de / ss * 1.60218 * 10 / 2
-    
     printf("%-12.5f %-12.5f\n", df, es)
+    zz << es
   end
 end
+
+def print_data(xx, head, fmt)
+  cont = head
+  xx.each do |x| cont << sprintf(fmt,x) end
+  cont.sub!(/,$/,'')
+  cont << sprintf("];\n")
+  print cont
+end
+print_data(xx,"xx:=[", " %-d,")
+print_data(yy,"yy:=[", " %-d,")
+print_data(zz,"zz:=[", " %10.5f,")
+

@@ -10,7 +10,7 @@ module BoundaryRelax
 
     desc 'calc_e_surface','calc energy surface of boundary cell'
     def calc_e_surface
-      system 'ruby samples/cell_relaxation.rb'
+      system 'ruby samples/calc_e_surface.rb'
     end
 
     desc 'one_d_curve','calc one dimension curve of boundary cell'
@@ -22,7 +22,12 @@ module BoundaryRelax
     def boundary_bracket
       system 'ruby samples/boundary_bracket.rb'
     end
-  end
+
+    desc 'two_dim_min','two dimensional minimization'
+    def two_dim_min
+      system 'ruby samples/two_dim_min.rb'
+    end
+end
 end
 
 BoundaryRelax::CLI.start(ARGV)
