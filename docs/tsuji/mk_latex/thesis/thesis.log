@@ -533,4 +533,32 @@ LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
 File: ../.././figs/POSCAR_0_3315_46_Al.png Graphic file (type bmp)
  <../.././figs/POSCAR_0_3315_46_Al.png> [5]
 
-../split_files/chapter1/chapter1.tex:100: LaTe
+../split_files/chapter1/chapter1.tex:100: LaTeX Error: Environment longtable un
+defined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.100 \begin{longtable}
+                       []{@{}llllll@{}}
+? 
+../split_files/chapter1/chapter1.tex:100: Emergency stop.
+ ...                                              
+                                                  
+l.100 \begin{longtable}
+                       []{@{}llllll@{}}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+ 
+Here is how much of TeX's memory you used:
+ 8150 strings out of 493683
+ 124033 string characters out of 6149653
+ 222234 words of memory out of 5000000
+ 11583 multiletter control sequences out of 15000+600000
+ 16270 words of font info for 67 fonts, out of 8000000 for 9000
+ 929 hyphenation exceptions out of 8191
+ 44i,6n,40p,322b,357s stack positions out of 5000i,500n,10000p,200000b,80000s
+Output written on thesis.dvi (6 pages, 9644 bytes).
