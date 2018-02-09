@@ -98,7 +98,7 @@ class TwoDView < Viewer
     v /= 100.0
     c = v * s
 #    x = c * (1 - ((h / 60.0) % 2 - 1).abs)
-    x = (h % 60.0) / 60.0
+    x = (h % 90.0) / 90.0
     m = v - c
     #r, g, b = if h < 60 then [c, x, 0]
     #          elsif h < 120 then [x, c, 0]
@@ -108,13 +108,20 @@ class TwoDView < Viewer
     #          else [c, 0, x]
     #          end
     
-    r, g, b = if h < 60 then [1, 1 - x / 2, 0]
-              elsif h < 120 then [1, (1 - x) / 2, 0]
-              elsif h < 180 then [1 - x, x, 0]
-              elsif h < 240 then [0 ,1 - x, x]
-              elsif h < 300 then [x ,0 ,1]
-              else [1 - x ,0 ,1 - x]
+    #r, g, b = if h < 60 then [1, 1 - x / 2, 0]
+     #         elsif h < 120 then [1, (1 - x) / 2, 0]
+      #        elsif h < 180 then [1 - x, x, 0]
+       #       elsif h < 240 then [0 ,1 - x, x]
+        #      elsif h < 300 then [x ,0 ,1]
+         #     else [1 - x ,0 ,1 - x]
+    #    end
+
+    r, g, b = if h < 90 then [1, x, 0]
+              elsif h < 180 then [1 - x, 1, 0]
+              elsif h < 270 then [0 , 1, x]
+              else [0 ,1 - x ,1 ]
               end
+
 
     [r, g, b].map { |channel| ((channel + m)) }
   end
