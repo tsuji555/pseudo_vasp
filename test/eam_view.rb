@@ -4,6 +4,8 @@ require_relative '../lib/pseudo_vasp/two_d_view'
 require 'scanf'
 
 file = './POSCAR_0_3315_46_Al'
+file = 'POSCAR_0_3315_46_inner_relax_-4_1'
+file = 'POSCAR_0_3315_0del'
 $model = EAM.new(file)
 
 @view = TwoDView.new($model.return_data)
