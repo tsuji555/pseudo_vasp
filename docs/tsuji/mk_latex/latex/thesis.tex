@@ -281,57 +281,57 @@
     
 
     
-    \section{Table of Contents}\label{table-of-contents}
+    Table of Contents{}
 
-{1~~}粒界の最安定構造探索の自動化
+{{1~~}粒界の最安定構造探索の自動化}
 
-{2~~}はじめに
+{{2~~}はじめに}
 
-{2.1~~}背景
+{{2.1~~}背景}
 
-{2.2~~}目的
+{{2.2~~}目的}
 
-{3~~}構造最適化
+{{3~~}構造最適化}
 
-{3.1~~}背景
+{{3.1~~}背景}
 
-{3.1.1~~}VASPの構造最適化ルーチン
+{{3.1.1~~}VASPの構造最適化ルーチン}
 
-{3.1.2~~}POSCARのファイル構造
+{{3.1.2~~}POSCARのファイル構造}
 
-{3.1.3~~}vasp計算の結果
+{{3.1.3~~}vasp計算の結果}
 
-{3.2~~}手法
+{{3.2~~}手法}
 
-{3.2.1~~}EAM
+{{3.2.1~~}EAM}
 
-{3.2.2~~}ディレクトリー構造
+{{3.2.2~~}ディレクトリー構造}
 
-{3.3~~}結果
+{{3.3~~}結果}
 
-{3.3.1~~}囲い込み
+{{3.3.1~~}囲い込み}
 
-{3.3.2~~}界面エネルギーへの変換
+{{3.3.2~~}界面エネルギーへの変換}
 
-{3.4~~}2次元での最小化
+{{3.4~~}2次元での最小化}
 
-{3.4.1~~}最小計算数での試行
+{{3.4.1~~}最小計算数での試行}
 
-{3.4.2~~}手動による計算点の追加
+{{3.4.2~~}手動による計算点の追加}
 
-{3.4.3~~}自動での追加
+{{3.4.3~~}自動での追加}
 
-{3.5~~}問題の見直し
+{{3.5~~}問題の見直し}
 
-{4~~}自動原子削除の実装
+{{4~~}自動原子削除の実装}
 
-{4.1~~}energyおよびnlによる抽出
+{{4.1~~}energyおよびnlによる抽出}
 
-{4.2~~}x位置による選別
+{{4.2~~}x位置による選別}
 
-{4.3~~}POSCARファイルの仕様
+{{4.3~~}POSCARファイルの仕様}
 
-{4.4~~}auto\_delete\_poscar
+{{4.4~~}auto\_delete\_poscar}
 
     \section{粒界の最安定構造探索の自動化}\label{ux7c92ux754cux306eux6700ux5b89ux5b9aux69cbux9020ux63a2ux7d22ux306eux81eaux52d5ux5316}
 
@@ -384,17 +384,12 @@ viewである．これを緩和させて最安定エネルギーを求める．
 このためには内部の原子配置と，外部のセル形状の両方を緩和させる必要がある．
 今後これらをそれぞれ内部緩和，外部緩和と呼んでいく．
 
-\begin{figure}[H][htbp]
-\centering
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/POSCAR_0_3315_46_Al.png}
 \end{center}
-\caption{{}}
+一般的な第一原理計算では構造最適化のルーチンが用意されている．
 
 \label{fig:This}
-\end{figure}
-
-一般的な第一原理計算では構造最適化のルーチンが用意されている．
 我々が使用しているVASPにおいて用意されているルーチンは表の通りである．
 
 \begin{longtable}[]{@{}llllll@{}}
@@ -431,7 +426,7 @@ ISIF=7では，内部緩和をおこないセルは形状を保ったまま，�
 
 図はISIF=3で計算した場合の結果を示した．
 \begin{center}
-\includegraphics[width=150mm]{../.././thesis/thesis.004.jpeg}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_004.jpeg}
 \end{center}
 
 
@@ -479,12 +474,12 @@ Direct
 
     図はAl\_3315のセルサイズ変化によるエネルギー表面を示している．
 
-\begin{figure}[H][htbp]
+\begin{figure}[H]
 \centering
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/Al_3315_surface.png}
 \end{center}
-\caption{{}}
+\caption{}
 
 \label{fig:}
 \end{figure}
@@ -524,34 +519,30 @@ x & y & E\tabularnewline
 これらの値は，粒界モデルのx軸，y軸を変化させ，セル形状を固定した状態で，内部緩和をおこないエネルギー計算を行っている．
 これをfittingして，最安定構造を求めるには次のMapleスクリプトで得られる．
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{x0}\NormalTok{:=-4}\KeywordTok{;y0}\NormalTok{:=0}\KeywordTok{;}
-\KeywordTok{with}\NormalTok{(stats)}\KeywordTok{:} \NormalTok{data:=[xx,yy,zz]: }
-\KeywordTok{fit1}\NormalTok{:=fit[leastsquare[[x,y,z], }
-    \OtherTok{z=}\NormalTok{a1+a2}\KeywordTok{*}\NormalTok{(x-x0)}\KeywordTok{+a3*}\NormalTok{(y-y0)}\KeywordTok{+a4*}\NormalTok{(x-x0)}\KeywordTok{*}\NormalTok{(y-y0)}\KeywordTok{+}
-      \KeywordTok{a5*}\NormalTok{(x-x0)^}\KeywordTok{2+a6*}\NormalTok{(y-y0)^}\KeywordTok{2}\NormalTok{, }
-    \DataTypeTok{\{a1,a2,a3,a4,a5,a6\}}\NormalTok{]]}\KeywordTok{(data)}\NormalTok{;}
+\begin{verbatim}
+x0:=-4;y0:=0;
+with(stats): data:=[xx,yy,zz]: 
+fit1:=fit[leastsquare[[x,y,z], 
+    z=a1+a2*(x-x0)+a3*(y-y0)+a4*(x-x0)*(y-y0)+
+      a5*(x-x0)^2+a6*(y-y0)^2, 
+    {a1,a2,a3,a4,a5,a6}]](data);
 
-\KeywordTok{fit1} \NormalTok{:= z = .5026144708-0.4629870219e-2*x-0.7128049500e-2*y+}
-\KeywordTok{(0.5266188957e-2*}\NormalTok{(x+4}\KeywordTok{)}\NormalTok{)}\KeywordTok{*y+0.5395943477e-2*}\NormalTok{(x+4)^}\KeywordTok{2+0.4563284219e-2*y}\NormalTok{^2}
-\end{Highlighting}
-\end{Shaded}
+fit1 := z = .5026144708-0.4629870219e-2*x-0.7128049500e-2*y+
+(0.5266188957e-2*(x+4))*y+0.5395943477e-2*(x+4)^2+0.4563284219e-2*y^2
+\end{verbatim}
 
 これで求められた関数fit1をx,yで微分し，連立方程式として解くと
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{e1}\NormalTok{:=diff(f1(x,y),}\KeywordTok{x}\NormalTok{);}
-\KeywordTok{e2}\NormalTok{:=diff(f1(x,y),}\KeywordTok{y}\NormalTok{);}
-\KeywordTok{s1}\NormalTok{:=solve(}\DataTypeTok{\{e1,e2\},\{x,y\}}\NormalTok{);}
-       \KeywordTok{0.03853767760} \NormalTok{+ 0.005266188957 y + 0.01079188695 x}
-      \KeywordTok{0.01393670633} \NormalTok{+ 0.005266188957 x + 0.009126568438 y}
-              \NormalTok{\{}\KeywordTok{x} \NormalTok{= -3.933335758, y = 0.7425554356\}}
-\KeywordTok{subs}\NormalTok{(s1,f1(x,y));}
-                          \KeywordTok{0.5183331423}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+e1:=diff(f1(x,y),x);
+e2:=diff(f1(x,y),y);
+s1:=solve({e1,e2},{x,y});
+       0.03853767760 + 0.005266188957 y + 0.01079188695 x
+      0.01393670633 + 0.005266188957 x + 0.009126568438 y
+              {x = -3.933335758, y = 0.7425554356}
+subs(s1,f1(x,y));
+                          0.5183331423
+\end{verbatim}
 
 として求めることが可能である．
 
@@ -676,18 +667,12 @@ bx + GOLD*(bx-ax)で求められる値を計算するだけで囲い込みが成
 この様子を図に示した．初期の3点は赤丸で，最終結果の3点を青丸で示している．初期の3点の中間に，青丸で示した4つ目の計算結果が追加されている．
 
 一方，テストケース{[}4{]}-{[}6{]}は囲い込みが初期の3点ではうまくいっておらず，だいぶ外側に外れた位置での計算が必要となっている．初期値のステップの大小によるロスはmnbrakの計算ルーチンによってうまく回避されている(図(b),(c))．
-
-\begin{figure}[H][htbp]
-\centering
 \begin{center}
-\includegraphics[width=150mm]{../.././figs/thesis.006.jpeg}
+\includegraphics[width=150mm]{../.././figs/thesis_006.jpeg}
 \end{center}
-\caption{{}}
+初期値の取り方を間違うと最大6になるが，
 
 \label{fig:}
-\end{figure}
-
-初期値の取り方を間違うと最大6になるが，
 概ね，囲い込みは効率良くmnbrakによって可能であることが確認できた．
 そこで，このルーチンをそのまま使ってこの後の開発を進めることとした．
 
@@ -696,18 +681,16 @@ bx + GOLD*(bx-ax)で求められる値を計算するだけで囲い込みが成
 次に示すコードは計算サーバに用意されているRakefile内で
 VASP計算結果から表面エネルギーを求めるメソッドである．
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{def} \NormalTok{calc_df_es(n_atom, lat_c)}
-  \NormalTok{_status, stdout, = systemu(}\StringTok{"tail inner_*.o* |grep 'F='"}\NormalTok{)}
-  \NormalTok{df = stdout.scan(}\OtherTok{/F=(.+) E0/}\NormalTok{)[}\DecValTok{0}\NormalTok{][}\DecValTok{0}\NormalTok{].to_f}
-  \NormalTok{de = df - n_atom * -}\FloatTok{3.739501247}
-  \NormalTok{ss = lat_c[}\DecValTok{1}\NormalTok{] * lat_c[}\DecValTok{2}\NormalTok{]}
-  \NormalTok{es = de / ss * }\FloatTok{1.60218} \NormalTok{* }\DecValTok{10} \NormalTok{/ }\DecValTok{2}
-  \NormalTok{df.to_s + }\StringTok{' '} \NormalTok{+ es.to_s + }\StringTok{"\textbackslash{}n"}
-\KeywordTok{end}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+def calc_df_es(n_atom, lat_c)
+  _status, stdout, = systemu("tail inner_*.o* |grep 'F='")
+  df = stdout.scan(/F=(.+) E0/)[0][0].to_f
+  de = df - n_atom * -3.739501247
+  ss = lat_c[1] * lat_c[2]
+  es = de / ss * 1.60218 * 10 / 2
+  df.to_s + ' ' + es.to_s + "\n"
+end
+\end{verbatim}
 
 ここで，lat\_c{[}1{]},
 lat\_c{[}2{]}に\(a,b\)軸の値が，ssに界面の面積が，
@@ -758,12 +741,12 @@ n\_atomに原子数が入っている．esでは得られた界面エネルギ�
 
 とした．このエネルギー表面を描画すると次のとおりとなる．
 
-\begin{figure}[H][htbp]
+\begin{figure}[H]
 \centering
 \begin{center}
-\includegraphics[width=150mm]{../.././thesis/thesis.007.jpeg}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_007.jpeg}
 \end{center}
-\caption{{}}
+\caption{cell外形の変位によるエネルギー表面．\label{spandata-label}}
 
 \label{fig:}
 \end{figure}
@@ -789,47 +772,43 @@ x,yで最小化を試みる．
 
 mnbrakの最初の実装では，
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{def} \NormalTok{func(ax)}
-  \DataTypeTok{$n_calc}\NormalTok{+=}\DecValTok{1}
-  \DataTypeTok{$model}\NormalTok{.set_cell_size(ax)}
-  \DataTypeTok{$model}\NormalTok{.total_energy}\DecValTok{+150}\NormalTok{.}\DecValTok{45633275921924}
-\KeywordTok{end}
+\begin{verbatim}
+def func(ax)
+  $n_calc+=1
+  $model.set_cell_size(ax)
+  $model.total_energy+150.45633275921924
+end
 
-\CommentTok{# mnbrak, coding from Num Recipe in C}
-\KeywordTok{def} \NormalTok{mnbrak(ax, bx)}
-  \NormalTok{printf(}\StringTok{"init range:%10.5f-%10.5f\textbackslash{}n"}\NormalTok{,ax,bx)}
-  \DataTypeTok{$n_calc} \NormalTok{= }\DecValTok{0}
+# mnbrak, coding from Num Recipe in C
+def mnbrak(ax, bx)
+  printf("init range:%10.5f-%10.5f\n",ax,bx)
+  $n_calc = 0
 
-  \NormalTok{fa = func(ax)}
-\end{Highlighting}
-\end{Shaded}
+  fa = func(ax)
+\end{verbatim}
 
 としていた．これをy軸方向への変位を扱えるように，次の様に変更した．
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{def} \NormalTok{func_x(ax,ay=}\FloatTok{1.0}\NormalTok{)}
-  \DataTypeTok{$n_calc}\NormalTok{+=}\DecValTok{1}
-  \DataTypeTok{$model}\NormalTok{.set_cell_size(ax,ay)}
-  \DataTypeTok{$model}\NormalTok{.total_energy}\DecValTok{+150}\NormalTok{.}\DecValTok{45633275921924}
-\KeywordTok{end}
+\begin{verbatim}
+def func_x(ax,ay=1.0)
+  $n_calc+=1
+  $model.set_cell_size(ax,ay)
+  $model.total_energy+150.45633275921924
+end
 
-\KeywordTok{def} \NormalTok{func_y(ay, ax=}\FloatTok{1.0}\NormalTok{) }\CommentTok{# note the order of ax, ay }
-  \DataTypeTok{$n_calc}\NormalTok{+=}\DecValTok{1}
-  \DataTypeTok{$model}\NormalTok{.set_cell_size(ax,ay)}
-  \DataTypeTok{$model}\NormalTok{.total_energy}\DecValTok{+150}\NormalTok{.}\DecValTok{45633275921924}
-\KeywordTok{end}
+def func_y(ay, ax=1.0) # note the order of ax, ay 
+  $n_calc+=1
+  $model.set_cell_size(ax,ay)
+  $model.total_energy+150.45633275921924
+end
 
-\CommentTok{# mnbrak, coding from Num Recipe in C}
-\KeywordTok{def} \NormalTok{mnbrak(ax, bx, method_func=method(}\StringTok{:func_x}\NormalTok{))}
-  \NormalTok{printf(}\StringTok{"init range:%10.5f-%10.5f\textbackslash{}n"}\NormalTok{,ax,bx)}
-  \DataTypeTok{$n_calc} \NormalTok{= }\DecValTok{0}
+# mnbrak, coding from Num Recipe in C
+def mnbrak(ax, bx, method_func=method(:func_x))
+  printf("init range:%10.5f-%10.5f\n",ax,bx)
+  $n_calc = 0
 
-  \NormalTok{fa = method_func.call(ax)}
-\end{Highlighting}
-\end{Shaded}
+  fa = method_func.call(ax)
+\end{verbatim}
 
 具体的な変更箇所は， 1. 呼び出す関数を引数として受け取り， 1.
 それを明示的に呼び出す(call)
@@ -839,36 +818,32 @@ mnbrakの最初の実装では，
 func\_yに変位の操作を委ねている．
 これに従ってmnbrakを2次元で行うように変更すると， 呼び出し方は，
 
-\begin{Shaded}
-\begin{Highlighting}[]
-  \NormalTok{x_min =  mnbrak(}\FloatTok{1.0}\NormalTok{, }\FloatTok{1.02}\NormalTok{, method(}\StringTok{:func_x}\NormalTok{) )}
-  \NormalTok{y_min =  mnbrak(}\FloatTok{1.0}\NormalTok{, }\FloatTok{1.02}\NormalTok{, method(}\StringTok{:func_y}\NormalTok{) )}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+  x_min =  mnbrak(1.0, 1.02, method(:func_x) )
+  y_min =  mnbrak(1.0, 1.02, method(:func_y) )
+\end{verbatim}
 
 と変更することで
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{math := <<   }\FloatTok{2.00000}\NormalTok{|   }\FloatTok{0.00000}\NormalTok{|   }\FloatTok{0.24140}\NormalTok{>,}
-\NormalTok{<   }\FloatTok{0.00000}\NormalTok{|   }\FloatTok{0.00000}\NormalTok{|   }\FloatTok{0.00000}\NormalTok{>,}
-\NormalTok{<  -}\FloatTok{3.23607}\NormalTok{|   }\FloatTok{0.00000}\NormalTok{|   }\FloatTok{1.11778}\NormalTok{>,}
-\NormalTok{<   }\FloatTok{0.00000}\NormalTok{|   }\FloatTok{2.00000}\NormalTok{|   }\FloatTok{0.35218}\NormalTok{>,}
-\NormalTok{<   }\FloatTok{0.00000}\NormalTok{|   }\FloatTok{0.00000}\NormalTok{|   }\FloatTok{0.00000}\NormalTok{>,}
-\NormalTok{<   }\FloatTok{0.00000}\NormalTok{|  -}\FloatTok{3.23607}\NormalTok{|   }\FloatTok{0.37768}\NormalTok{>>;}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+math := <<   2.00000|   0.00000|   0.24140>,
+<   0.00000|   0.00000|   0.00000>,
+<  -3.23607|   0.00000|   1.11778>,
+<   0.00000|   2.00000|   0.35218>,
+<   0.00000|   0.00000|   0.00000>,
+<   0.00000|  -3.23607|   0.37768>>;
+\end{verbatim}
 
 と数値が得られる．
 
 これからfittingを行うと
 
-\begin{figure}[H][htbp]
+\begin{figure}[H]
 \centering
 \begin{center}
-\includegraphics[width=150mm]{../.././thesis/thesis.008.jpeg}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_008.jpeg}
 \end{center}
-\caption{{}}
+\caption{x,y軸方向のmnbrakによる最安定化の試行．¥label\{spandata-label\}}
 
 \label{fig:}
 \end{figure}
@@ -885,24 +860,22 @@ func\_yに変位の操作を委ねている．
 
 そこで，まずは
 
-\begin{Shaded}
-\begin{Highlighting}[]
-  \NormalTok{print }\StringTok{"indicate additional calc point [x,y]:"}
-  \NormalTok{line = gets}
-  \NormalTok{x,y=line.chomp.split(}\StringTok{','}\NormalTok{)}
-  \DataTypeTok{$model}\NormalTok{.set_cell_size(x.to_f/}\FloatTok{100.0}\DecValTok{+1}\NormalTok{.}\DecValTok{0}\NormalTok{,y.to_f/}\FloatTok{100.0}\DecValTok{+1}\NormalTok{.}\DecValTok{0}\NormalTok{)}
-  \NormalTok{z = }\DataTypeTok{$model}\NormalTok{.total_energy}\DecValTok{+150}\NormalTok{.}\DecValTok{45633275921924}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+  print "indicate additional calc point [x,y]:"
+  line = gets
+  x,y=line.chomp.split(',')
+  $model.set_cell_size(x.to_f/100.0+1.0,y.to_f/100.0+1.0)
+  z = $model.total_energy+150.45633275921924
+\end{verbatim}
 
 として，この値を手動で追加して どのようになるかを確かめた．
 
-\begin{figure}[H][htbp]
+\begin{figure}[H]
 \centering
 \begin{center}
-\includegraphics[width=150mm]{../.././thesis/thesis.008.jpeg}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_008.jpeg}
 \end{center}
-\caption{{}}
+\caption{範囲の最小値ペアと最大値ペアの手動追加．\label{spandata-label}}
 
 \label{fig:}
 \end{figure}
@@ -920,12 +893,12 @@ func\_yに変位の操作を委ねている．
 先ほどの手動による計算点の追加では，手間がかかる．
 そこで，計算点は増えるが，自動で計算点を追加するようにcodeを 改良した
 
-\begin{figure}[H][htbp]
+\begin{figure}[H]
 \centering
 \begin{center}
-\includegraphics[width=150mm]{../.././thesis/thesis.009.jpeg}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_009.jpeg}
 \end{center}
-\caption{{}}
+\caption{範囲の最小値ペアと最大値ペアを自動追加．¥label\{spandata-label\}}
 
 \label{fig:}
 \end{figure}
@@ -969,7 +942,7 @@ energyがminiに鳴っている，x,yのペアの一覧表をつくってくだ�
 粒界生成において，回転，並びに鏡映操作を行った後の原子配置を図に示した．
 
 \begin{center}
-\includegraphics[width=150mm]{../.././auto_delete/auto_delete.002.jpeg}
+\includegraphics[width=150mm]{../.././auto_delete/auto_delete_002.jpeg}
 \end{center}
 削除操作前後の原子配置，8417\_186を例示．
 
@@ -992,22 +965,20 @@ y=4, z=1およびtan
 あるいは配位数(:nl,neighbour listを意味)を使った選別を試みた．
 近傍の原子を取り出すと，
 
-\begin{Shaded}
-\begin{Highlighting}[]
-   \KeywordTok{4}   \NormalTok{28.86278    8.28733    2.02070  11   -2.65182  0.738    3.08007   -5.73189 0.54}
-   \KeywordTok{5}   \NormalTok{28.57701   10.28772    0.00000  13    0.23319  3.623    7.50972   -7.27653 1.03}
-   \KeywordTok{6}   \NormalTok{28.29124   12.28812    2.02070  14   12.27927 15.669   21.86782   -9.58855 2.28}
-   \KeywordTok{8}   \NormalTok{55.72518    6.00117    2.02070  14   12.27927 15.669   21.86782   -9.58855 2.28}
-  \KeywordTok{94}   \NormalTok{55.43941    8.00156    0.00000  13    0.23319  3.623    7.50972   -7.27653 1.03}
-  \KeywordTok{95}   \NormalTok{55.15364   10.00195    2.02070  11   -2.65182  0.738    3.08007   -5.73189 0.54}
- \KeywordTok{103}   \NormalTok{27.14816    8.28733    2.02070  11   -2.65182  0.738    3.08007   -5.73189 0.54}
- \KeywordTok{104}   \NormalTok{27.43393   10.28772    0.00000  13    0.23319  3.623    7.50972   -7.27653 1.03}
- \KeywordTok{105}   \NormalTok{27.71970   12.28812    2.02070  14   12.27927 15.669   21.86782   -9.58855 2.28}
- \KeywordTok{106}    \NormalTok{0.28577    6.00117    2.02070  14   12.27927 15.669   21.86782   -9.58855 2.28}
- \KeywordTok{192}    \NormalTok{0.57154    8.00156    0.00000  13    0.23319  3.623    7.50972   -7.27653 1.03}
- \KeywordTok{193}    \NormalTok{0.85731   10.00195    2.02070  11   -2.65182  0.738    3.08007   -5.73189 0.54}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+   4   28.86278    8.28733    2.02070  11   -2.65182  0.738    3.08007   -5.73189 0.54
+   5   28.57701   10.28772    0.00000  13    0.23319  3.623    7.50972   -7.27653 1.03
+   6   28.29124   12.28812    2.02070  14   12.27927 15.669   21.86782   -9.58855 2.28
+   8   55.72518    6.00117    2.02070  14   12.27927 15.669   21.86782   -9.58855 2.28
+  94   55.43941    8.00156    0.00000  13    0.23319  3.623    7.50972   -7.27653 1.03
+  95   55.15364   10.00195    2.02070  11   -2.65182  0.738    3.08007   -5.73189 0.54
+ 103   27.14816    8.28733    2.02070  11   -2.65182  0.738    3.08007   -5.73189 0.54
+ 104   27.43393   10.28772    0.00000  13    0.23319  3.623    7.50972   -7.27653 1.03
+ 105   27.71970   12.28812    2.02070  14   12.27927 15.669   21.86782   -9.58855 2.28
+ 106    0.28577    6.00117    2.02070  14   12.27927 15.669   21.86782   -9.58855 2.28
+ 192    0.57154    8.00156    0.00000  13    0.23319  3.623    7.50972   -7.27653 1.03
+ 193    0.85731   10.00195    2.02070  11   -2.65182  0.738    3.08007   -5.73189 0.54
+\end{verbatim}
 
 が選択される．これは，6列目に記されたeneryを基準に選別したものである．
 しかし，サイト番号7に対応する
@@ -1023,15 +994,13 @@ y=4, z=1およびtan
 そこで，x座標による選別を実装した．
 初期のcodeがわかりやすいので，そのまま記すと次のようになる．
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{a_length =   }\FloatTok{56.0109463716}
-\NormalTok{dx = a_length/(}\DecValTok{32+2}\NormalTok{)}
-\NormalTok{a_half = a_length/}\FloatTok{2.0}
-\KeywordTok{if} \NormalTok{x_pos < dx }\KeywordTok{or}  \NormalTok{(x_pos > a_half }\KeywordTok{and} \NormalTok{x_pos < a_half + dx)}
-    \NormalTok{printf(}\StringTok{"%10.5f: "}\NormalTok{, x_pos/a_length)}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+a_length =   56.0109463716
+dx = a_length/(32+2)
+a_half = a_length/2.0
+if x_pos < dx or  (x_pos > a_half and x_pos < a_half + dx)
+    printf("%10.5f: ", x_pos/a_length)
+\end{verbatim}
 
 削除領域の幅(dx)は層数から計算する．
 中心の長さはx軸の長さ(a\_length)から計算している． これらの領域
@@ -1170,59 +1139,55 @@ Cartesian           # direct_cartesian_switch
 前述のPOSCARの情報を読み込むPoscar classを使って
 実装したのが次のコードである．
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\NormalTok{require }\StringTok{'./poscar'}
+\begin{verbatim}
+require './poscar'
 
-\NormalTok{file = }\DataTypeTok{ARGV}\NormalTok{[}\DecValTok{0}\NormalTok{] || }\StringTok{'POSCAR_0_8417'}
-\NormalTok{poscar = }\DataTypeTok{Poscar}\NormalTok{.new(file)}
-\NormalTok{div = }\DataTypeTok{ARGV}\NormalTok{[}\DecValTok{1}\NormalTok{].to_i || }\DecValTok{32+2}
-\NormalTok{printf(}\StringTok{"divide num: %4d\textbackslash{}n"}\NormalTok{, div)}
-\NormalTok{printf(}\StringTok{"a length  : %15.10f\textbackslash{}n"}\NormalTok{, a_length = poscar.lat_vec[}\DecValTok{0}\NormalTok{][}\DecValTok{0}\NormalTok{])}
-\NormalTok{printf(}\StringTok{"normal dx : %10.5f\textbackslash{}n"}\NormalTok{, dx = }\FloatTok{1.0}\NormalTok{/div)}
+file = ARGV[0] || 'POSCAR_0_8417'
+poscar = Poscar.new(file)
+div = ARGV[1].to_i || 32+2
+printf("divide num: %4d\n", div)
+printf("a length  : %15.10f\n", a_length = poscar.lat_vec[0][0])
+printf("normal dx : %10.5f\n", dx = 1.0/div)
 
-\NormalTok{a_half = }\FloatTok{0.5}
-\NormalTok{selected = []}
-\NormalTok{poscar.pos.each_with_index }\KeywordTok{do} \NormalTok{|pos,i_atom|}
-  \NormalTok{x_pos = pos[}\DecValTok{0}\NormalTok{]}
-  \KeywordTok{if} \NormalTok{x_pos < dx }\KeywordTok{or}  \NormalTok{(x_pos > a_half }\KeywordTok{and} \NormalTok{x_pos < a_half + dx)}
-    \NormalTok{printf(}\StringTok{"%4d %10.5f\textbackslash{}n"}\NormalTok{,i_atom.to_i}\DecValTok{+1}\NormalTok{,x_pos)}
-    \NormalTok{selected << i_atom}
-  \KeywordTok{end}
-\KeywordTok{end}
+a_half = 0.5
+selected = []
+poscar.pos.each_with_index do |pos,i_atom|
+  x_pos = pos[0]
+  if x_pos < dx or  (x_pos > a_half and x_pos < a_half + dx)
+    printf("%4d %10.5f\n",i_atom.to_i+1,x_pos)
+    selected << i_atom
+  end
+end
 
-\NormalTok{poscar.delete_atoms(selected)}
-\DataTypeTok{File}\NormalTok{.open(}\StringTok{'POSCAR_tmp'}\NormalTok{,}\StringTok{'w'}\NormalTok{) }\KeywordTok{do} \NormalTok{|file|}
-  \NormalTok{file.print poscar.poscar_format}
-\KeywordTok{end}
-\end{Highlighting}
-\end{Shaded}
+poscar.delete_atoms(selected)
+File.open('POSCAR_tmp','w') do |file|
+  file.print poscar.poscar_format
+end
+\end{verbatim}
 
 削除の幅は，原子層の厚さから推測できるように第2入力として指定している．
 delete\_atomsはselectedで選ばれた番号の原子をPOSCARから消去する命令である．
 POSCAR\_0\_4417に適用した結果は次の通りである．
 
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{>} \KeywordTok{ruby} \NormalTok{auto_delete_poscar.rb POSCAR_0_4417 18}
-\KeywordTok{divide} \NormalTok{num:   18}
-\KeywordTok{a} \NormalTok{length  :   28.0054731858}
-\KeywordTok{normal} \NormalTok{dx :    0.05556}
-   \KeywordTok{3}    \NormalTok{0.55102}
-   \KeywordTok{4}    \NormalTok{0.54082}
-   \KeywordTok{5}    \NormalTok{0.53061}
-   \KeywordTok{6}    \NormalTok{0.52041}
-   \KeywordTok{8}    \NormalTok{0.51020}
-  \KeywordTok{88}    \NormalTok{0.01020}
-  \KeywordTok{91}    \NormalTok{0.02041}
-  \KeywordTok{92}    \NormalTok{0.03061}
-  \KeywordTok{95}    \NormalTok{0.04082}
-  \KeywordTok{96}    \NormalTok{0.05102}
-\NormalTok{[}\KeywordTok{95}\NormalTok{, 94, 91, 90, 87, 7, 5, 4, 3, 2]}
-\KeywordTok{10}
-\KeywordTok{88}
-\end{Highlighting}
-\end{Shaded}
+\begin{verbatim}
+> ruby auto_delete_poscar.rb POSCAR_0_4417 18
+divide num:   18
+a length  :   28.0054731858
+normal dx :    0.05556
+   3    0.55102
+   4    0.54082
+   5    0.53061
+   6    0.52041
+   8    0.51020
+  88    0.01020
+  91    0.02041
+  92    0.03061
+  95    0.04082
+  96    0.05102
+[95, 94, 91, 90, 87, 7, 5, 4, 3, 2]
+10
+88
+\end{verbatim}
 
 削除原子数を指定することを断念した．これには，原子のx-座標でsortして順々に選択していかねばならない．
 そのsortを指定領域で実行するコードの記述が難しそうなので，今回は見送っている．
