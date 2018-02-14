@@ -1,3 +1,4 @@
+# coding: utf-8
 require_relative './viewer'
 
 # two dimension view of eam_analysis
@@ -26,6 +27,7 @@ class TwoDView < Viewer
     start = 180
     min_e = enes.sort[0]
     max_e = enes.sort[-1]
+    mid_e = 0.3456
     printf("min_e = %7.4f [eV]\nmax_e = %7.4f [eV]\n", min_e, max_e)
     #    p max_e=-2.8081
     #coeff = (360 - start) / (max_e - min_e)
@@ -34,11 +36,20 @@ class TwoDView < Viewer
     #else
     #return enes.inject([]) { |ret, ene| ret << (ene - min_e) * coeff + start }
     #end
-    diff = max_e - min_e
+
+    ret = []
+    enes.each { |ene|
+      if ene < mid_e
+        ret << 180 - (mid_e - ene) / (mid_e - min_e) * 180
+      else
+        ret << 180 + (ene - mid_e) / (max_e - mid_e) * 180
+      end
+    }
+
     if opts[:rev]
-      return enes.inject([]) { |ret, ene| ret << 360 - 360 * (ene - min_e) / diff}
+      return ret
     else
-      return enes.inject([]) { |ret, ene| ret << 360 - 360 * (ene - min_e) / diff}
+      return ret
     end
   end
 

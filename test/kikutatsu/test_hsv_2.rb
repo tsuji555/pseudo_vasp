@@ -16,17 +16,16 @@ end
 surface = Cairo::SVGSurface.new('view_2.svg', 360, 100)
 context = Cairo::Context.new(surface)
 context.set_line_width(1)
-n = 10
-dd = 360/(n+1)/2
+n = 360
+dd = 360/n
 x0 = 0
+x1 = 2
 n.times do |i|
   input = [dd*i,100,100]
   output = hsv_to_rgb(*input)
-  p [[input], [output]]
   context.set_source_rgb(*output)
   x0 += dd
   y0,y1 = 0, 50
-  x1 = x0 + 10
   context.rectangle(x0, y0, x1, y1)
   context.fill
 end
