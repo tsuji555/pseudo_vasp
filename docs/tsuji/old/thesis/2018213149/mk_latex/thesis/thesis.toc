@@ -1,0 +1,25 @@
+\contentsline {chapter}{\numberline {第1章}Table of Contents}{5}{chapter.1}
+\contentsline {chapter}{\numberline {第2章}はじめに}{6}{chapter.2}
+\contentsline {section}{\numberline {2.1}背景}{6}{section.2.1}
+\contentsline {section}{\numberline {2.2}目的}{6}{section.2.2}
+\contentsline {chapter}{\numberline {第3章}構造最適化}{7}{chapter.3}
+\contentsline {section}{\numberline {3.1}背景}{7}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}VASPの構造最適化ルーチン}{7}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}POSCARのファイル構造}{9}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}vasp計算の結果}{10}{subsection.3.1.3}
+\contentsline {section}{\numberline {3.2}手法}{13}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}EAM}{13}{subsection.3.2.1}
+\contentsline {subsection}{\numberline {3.2.2}ディレクトリー構造}{13}{subsection.3.2.2}
+\contentsline {section}{\numberline {3.3}結果}{15}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}囲い込み}{15}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}界面エネルギーへの変換}{17}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}2次元での最小化}{20}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}最小計算数での試行}{20}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}手動による計算点の追加}{22}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}自動での追加}{24}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}問題の見直し}{24}{section.3.5}
+\contentsline {chapter}{\numberline {第4章}自動原子削除の実装}{26}{chapter.4}
+\contentsline {section}{\numberline {4.1}energyおよびnlによる抽出}{27}{section.4.1}
+\contentsline {section}{\numberline {4.2}x位置による選別}{27}{section.4.2}
+\contentsline {section}{\numberline {4.3}POSCARファイルの仕様}{29}{section.4.3}
+\contentsline {section}{\numberline {4.4}auto\_delete\_poscar}{31}{section.4.4}
