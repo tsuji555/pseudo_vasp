@@ -1,0 +1,6 @@
+#+STARTUP: indent nolineimages nofold
+#+TITLE: auto_deleteの実装
+
+粒界近傍の近接原子を削除する操作を自動化することを試みた．
+開発時には，pseudo_vaspで行っていたが，完成したところで，
+boundaryへ移動させた．ここpseudo_vasp/testはそのうち閉じるべきだろうな．

@@ -45,7 +45,7 @@ class TwoDView < Viewer
         ret << 180 + (ene - mid_e) / (max_e - mid_e) * 180
       end
     }
-    
+
     if opts[:rev]
       return ret
     else

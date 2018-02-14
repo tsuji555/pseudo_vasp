@@ -5,8 +5,8 @@ def hsv_to_rgb(h, s, v)
   s /= 100.0
   v /= 100.0
   c = v * s
-  #x = c * (1 - ((h / 60.0) % 2 - 1).abs)                                    
-  x = (h % 60.0) / 60.0
+  #x = c * (1 - ((h / 60.0) % 2 - 1).abs)                                       
+  x = (h % 90.0) / 90.0
   m = v - c
 
   r, g, b = if h < 90 then [1, x, 0]
@@ -14,16 +14,21 @@ def hsv_to_rgb(h, s, v)
             elsif h < 270 then [0 , 1, x]
             else [0 ,1 - x ,1 ]
             end
+    r, g, b = if h < 90 then [0, x, 1]
+            elsif h < 180 then [0, 1, 1 - x]
+            elsif h < 270 then [x , 1, 0]
+            else [1 , 1 - x, 0]
+            end
   [r, g, b].map { |channel| ((channel + m)) }
 end
 
-surface = Cairo::SVGSurface.new('view_4.svg', 360, 100)
+surface = Cairo::SVGSurface.new('view_4_reverse.svg', 360, 100)
 context = Cairo::Context.new(surface)
 context.set_line_width(1)
 n = 360
 dd = 360/n
 x0 = 0
-#parameter = -5..5(10)                                                         
+#parameter = -5..5(10)
 n.times do |i|
   input = [dd*i,100,100]
   output = hsv_to_rgb(*input)
@@ -37,4 +42,4 @@ end
 
 context.fill
 surface.finish
-system "open -a safari view_4.svg"
+system "open -a safari view_4_reverse.svg"
