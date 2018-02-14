@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 require 'cairo'
-require_relative '../lib/pseudo_vasp/two_d_view.rb'
+require_relative '../../lib/pseudo_vasp/two_d_view.rb'
 
 # http://c4se.hatenablog.com/entry/2013/08/04/190937 by Sacchan
 # h = 0..360, s = 0..100, v = 0..100

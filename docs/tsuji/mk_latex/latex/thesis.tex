@@ -281,60 +281,6 @@
     
 
     
-    \section{Table of Contents}\label{table-of-contents}
-
-{1~~}粒界の最安定構造探索の自動化
-
-{2~~}はじめに
-
-{2.1~~}背景
-
-{2.2~~}目的
-
-{3~~}構造最適化
-
-{3.1~~}背景
-
-{3.1.1~~}VASPの構造最適化ルーチン
-
-{3.1.2~~}POSCARのファイル構造
-
-{3.1.3~~}vasp計算の結果
-
-{3.2~~}手法
-
-{3.2.1~~}EAM
-
-{3.2.2~~}ディレクトリー構造
-
-{3.3~~}結果
-
-{3.3.1~~}囲い込み
-
-{3.3.2~~}界面エネルギーへの変換
-
-{3.4~~}2次元での最小化
-
-{3.4.1~~}最小計算数での試行
-
-{3.4.2~~}手動による計算点の追加
-
-{3.4.3~~}自動での追加
-
-{3.5~~}問題の見直し
-
-{4~~}自動原子削除の実装
-
-{4.1~~}energyおよびnlによる抽出
-
-{4.2~~}x位置による選別
-
-{4.3~~}POSCARファイルの仕様
-
-{4.4~~}auto\_delete\_poscar
-
-    \section{粒界の最安定構造探索の自動化}\label{ux7c92ux754cux306eux6700ux5b89ux5b9aux69cbux9020ux63a2ux7d22ux306eux81eaux52d5ux5316}
-
     \section{はじめに}\label{ux306fux3058ux3081ux306b}
 
     \subsection{背景}\label{ux80ccux666f}
@@ -779,7 +725,7 @@ def func(ax)
   $model.total_energy+150.45633275921924
 end
 
-# mnbrak, coding from Num Recipe in C
+ # mnbrak, coding from Num Recipe in C
 def mnbrak(ax, bx)
   printf("init range:%10.5f-%10.5f\n",ax,bx)
   $n_calc = 0
@@ -802,7 +748,7 @@ def func_y(ay, ax=1.0) # note the order of ax, ay
   $model.total_energy+150.45633275921924
 end
 
-# mnbrak, coding from Num Recipe in C
+ # mnbrak, coding from Num Recipe in C
 def mnbrak(ax, bx, method_func=method(:func_x))
   printf("init range:%10.5f-%10.5f\n",ax,bx)
   $n_calc = 0

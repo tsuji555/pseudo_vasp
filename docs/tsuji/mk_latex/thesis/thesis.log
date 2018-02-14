@@ -1,4 +1,4 @@
-This is e-pTeX, Version 3.14159265-p3.7-160201-2.6 (utf8.euc) (TeX Live 2016) (preloaded format=platex 2017.1.26)  12 FEB 2018 19:11
+This is e-pTeX, Version 3.14159265-p3.7-160201-2.6 (utf8.euc) (TeX Live 2016) (preloaded format=platex 2017.1.26)  13 FEB 2018 14:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -520,144 +520,6 @@ LaTeX Warning: Label `fig:' multiply defined.
 
 LaTeX Warning: Label `fig:' multiply defined.
 
-
-LaTeX Warning: Label `ux306fux3058ux3081ux306b' multiply defined.
-
-
-LaTeX Warning: Label `ux80ccux666f' multiply defined.
-
-
-LaTeX Warning: Label `ux76eeux7684' multiply defined.
-
-
-LaTeX Warning: Label `ux69cbux9020ux6700ux9069ux5316' multiply defined.
-
-
-LaTeX Warning: Label `ux80ccux666f' multiply defined.
-
-
-LaTeX Warning: Label `vaspux306eux69cbux9020ux6700ux9069ux5316ux30ebux30fcux30c
-1ux30f3' multiply defined.
-
-
-LaTeX Warning: Label `fig:This' multiply defined.
-
-
-LaTeX Warning: Label `fig:' multiply defined.
-
-
-LaTeX Warning: Label `poscarux306eux30d5ux30a1ux30a4ux30ebux69cbux9020' multipl
-y defined.
-
-
-LaTeX Warning: Label `vaspux8a08ux7b97ux306eux7d50ux679c' multiply defined.
-
-
-LaTeX Warning: Label `fig:' multiply defined.
-
-
-LaTeX Warning: Label `ux624bux6cd5' multiply defined.
-
-
-LaTeX Warning: Label `eam' multiply defined.
-
-
-LaTeX Warning: Label `ux30c7ux30a3ux30ecux30afux30c8ux30eaux30fcux69cbux9020' m
-ultiply defined.
-
-
-LaTeX Warning: Label `ux7d50ux679c' multiply defined.
-
-
-LaTeX Warning: Label `ux56f2ux3044ux8fbcux307f' multiply defined.
-
-
-LaTeX Warning: Label `fig:' multiply defined.
-
-
-LaTeX Warning: Label `ux754cux9762ux30a8ux30cdux30ebux30aeux30fcux3078ux306eux5
-909ux63db' multiply defined.
-
-
-LaTeX Warning: Label `spandata-label' multiply defined.
-
-
-LaTeX Warning: Label `fig:' multiply defined.
-
-
-LaTeX Warning: Label `ux6b21ux5143ux3067ux306eux6700ux5c0fux5316' multiply defi
-ned.
-
-
-LaTeX Warning: Label `ux6700ux5c0fux8a08ux7b97ux6570ux3067ux306eux8a66ux884c' m
-ultiply defined.
-
-
-LaTeX Warning: Label `fig:' multiply defined.
-
-
-LaTeX Warning: Label `ux624bux52d5ux306bux3088ux308bux8a08ux7b97ux70b9ux306eux8
-ffdux52a0' multiply defined.
-
-
-LaTeX Warning: Label `spandata-label' multiply defined.
-
-
-LaTeX Warning: Label `fig:' multiply defined.
-
-
-LaTeX Warning: Label `ux81eaux52d5ux3067ux306eux8ffdux52a0' multiply defined.
-
-
-LaTeX Warning: Label `fig:' multiply defined.
-
-
-LaTeX Warning: Label `ux554fux984cux306eux898bux76f4ux3057' multiply defined.
-
-
-LaTeX Warning: Label `ux81eaux52d5ux539fux5b50ux524aux9664ux306eux5b9fux88c5' m
-ultiply defined.
-
-
-LaTeX Warning: Label `fig:' multiply defined.
-
-
-LaTeX Warning: Label `energyux304aux3088ux3073nlux306bux3088ux308bux62bdux51fa'
- multiply defined.
-
-
-LaTeX Warning: Label `xux4f4dux7f6eux306bux3088ux308bux9078ux5225' multiply def
-ined.
-
-
-LaTeX Warning: Label `poscarux30d5ux30a1ux30a4ux30ebux306eux4ed5ux69d8' multipl
-y defined.
-
-
-LaTeX Warning: Label `auto_delete_poscar' multiply defined.
-
-
-LaTeX Warning: Label `ux81eaux52d5ux539fux5b50ux524aux9664ux306eux5b9fux88c5' m
-ultiply defined.
-
-
-LaTeX Warning: Label `fig:' multiply defined.
-
-
-LaTeX Warning: Label `energyux304aux3088ux3073nlux306bux3088ux308bux62bdux51fa'
- multiply defined.
-
-
-LaTeX Warning: Label `xux4f4dux7f6eux306bux3088ux308bux9078ux5225' multiply def
-ined.
-
-
-LaTeX Warning: Label `poscarux30d5ux30a1ux30a4ux30ebux306eux4ed5ux69d8' multipl
-y defined.
-
-
-LaTeX Warning: Label `auto_delete_poscar' multiply defined.
-
 )
 \openout1 = `thesis.aux'.
 
@@ -723,266 +585,49 @@ LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JT1/gt/m/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <12> not available
 (Font)              Font shape `JY1/gt/m/n' tried instead on input line 1.
- [1
-
-] [2])
+)
 \tf@toc=\write4
 \openout4 = `thesis.toc'.
 
- [3] (./thesis.lot)
+ [1
+
+] [2] (./thesis.lot)
 \tf@lot=\write5
 \openout5 = `thesis.lot'.
 
- [4
+ [3
 
 ] (./thesis.lof
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 4.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 5.
 
 (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 4.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 5.
 )
 \tf@lof=\write6
 \openout6 = `thesis.lof'.
 
 
-(./.splits_location.tex (../split_files/chapter1/chapter1.tex [5
+(./.splits_location.tex (../split_files/chapter1/chapter1.tex [4
 
 ]
 第 1 章
-[6
-
-]
 LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <17.28> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 53.
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 3.
 LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <17.28> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 53.
- [7]
-LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JT1/gt/m/n' tried instead on input line 97.
-LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
-(Font)              Font shape `JY1/gt/m/n' tried instead on input line 97.
-File: ../.././figs/POSCAR_0_3315_46_Al.png Graphic file (type bmp)
- <../.././figs/POSCAR_0_3315_46_Al.png> [8]
-Overfull \hbox (144.80476pt too wide) in paragraph at lines 132--134
-[]\OT1/cmr/m/n/12 Trace only means that only the to-tal pres-sure, i.e. the lin
-e http://cms.mpi.univie.ac.at/vasp/guide/node112.html 
- []
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 3.
+) (../split_files/chapter2/chapter2.tex [5
 
-File: ../.././figs/thesis/thesis_004.jpeg Graphic file (type bmp)
-<../.././figs/thesis/thesis_004.jpeg> [9]
-Overfull \hbox (193.13123pt too wide) in paragraph at lines 179--179
-[]\OT1/cmtt/m/n/12 (Al) Source:.POSCAR_0;Expand:3,3,1;Shaped;Rotate:1/5,22.62[d
-egrees];Mirrorred;Shaped2;Cut:0.81715-0.84984[] 
- []
-
-[10]
-File: ../.././figs/Al_3315_surface.png Graphic file (type bmp)
- <../.././figs/Al_3315_surface.png> [11] [12] [13] [14] [15]
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[] \OT1/cmtt/m/n/12 init_x:=[ 1.0200,  1.0000,  0.9676]; init_y:=[ 0.2414,  0.0
-000,  1.1178];[] 
- []
-
-
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[]\OT1/cmtt/m/n/12 final_x:=[ 1.0200,  1.0000,  0.9676];final_y:=[ 0.2414,  0.0
-000,  1.1178];[] 
- []
-
-
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[] \OT1/cmtt/m/n/12 init_x:=[ 0.9800,  0.9900,  1.0062]; init_y:=[ 0.3041,  0.0
-454,  0.0404];[] 
- []
-
-
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[]\OT1/cmtt/m/n/12 final_x:=[ 0.9900,  0.9982,  1.0062];final_y:=[ 0.0454, -0.0
-033,  0.0404];[] 
- []
-
-
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[] \OT1/cmtt/m/n/12 init_x:=[ 0.9700,  0.9750,  0.9831]; init_y:=[ 0.9058,  0.5
-516,  0.1947];[] 
- []
-
-
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[]\OT1/cmtt/m/n/12 final_x:=[ 0.9898,  0.9974,  1.0008];final_y:=[ 0.0475, -0.0
-034,  0.0027];[] 
- []
-
-[16]
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[] \OT1/cmtt/m/n/12 init_x:=[ 0.9700,  0.9720,  0.9752]; init_y:=[ 0.9058,  0.7
-497,  0.5377];[] 
- []
-
-
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[]\OT1/cmtt/m/n/12 final_x:=[ 0.9873,  0.9981,  1.0068];final_y:=[ 0.0900, -0.0
-034,  0.0465];[] 
- []
-
-
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[] \OT1/cmtt/m/n/12 init_x:=[ 0.9700,  0.9710,  0.9726]; init_y:=[ 0.9058,  0.8
-252,  0.7055];[] 
- []
-
-
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[]\OT1/cmtt/m/n/12 final_x:=[ 0.9864,  0.9984,  1.0088];final_y:=[ 0.1075, -0.0
-032,  0.0688];[] 
- []
-
-
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[] \OT1/cmtt/m/n/12 init_x:=[ 0.9700,  1.0010,  1.0512]; init_y:=[ 0.9058,  0.0
-036,  0.8926];[] 
- []
-
-
-Overfull \hbox (1.70613pt too wide) in paragraph at lines 378--378
-[]\OT1/cmtt/m/n/12 final_x:=[ 0.9700,  1.0010,  1.0512];final_y:=[ 0.9058,  0.0
-036,  0.8926];[] 
- []
-
-File: ../.././figs/thesis_006.jpeg Graphic file (type bmp)
-<../.././figs/thesis_006.jpeg> [17] [18] [19]
-File: ../.././figs/thesis/thesis_007.jpeg Graphic file (type bmp)
-
-<../.././figs/thesis/thesis_007.jpeg> [20] [21] [22]
-File: ../.././figs/thesis/thesis_008.jpeg Graphic file (type bmp)
-
-<../.././figs/thesis/thesis_008.jpeg> [23]
-File: ../.././figs/thesis/thesis_009.jpeg Graphic file (type bmp)
-
-<../.././figs/thesis/thesis_009.jpeg>
-File: ../.././figs/thesis/thesis_010.jpeg Graphic file (type bmp)
- <../.././figs/thesis/thesis_010.jpeg>
-[24] [25]
-File: ../.././auto_delete/auto_delete_002.jpeg Graphic file (type bmp)
- <../.././auto_delete/auto_delete_002.jpeg> [26]
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[]   \OT1/cmtt/m/n/12 4   28.86278    8.28733    2.02070  11   -2.65182  0.738 
-   3.08007   -5.73189 0.54[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[]   \OT1/cmtt/m/n/12 5   28.57701   10.28772    0.00000  13    0.23319  3.623 
-   7.50972   -7.27653 1.03[] 
- []
-
-[27]
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[]   \OT1/cmtt/m/n/12 6   28.29124   12.28812    2.02070  14   12.27927 15.669 
-  21.86782   -9.58855 2.28[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[]   \OT1/cmtt/m/n/12 8   55.72518    6.00117    2.02070  14   12.27927 15.669 
-  21.86782   -9.58855 2.28[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[]  \OT1/cmtt/m/n/12 94   55.43941    8.00156    0.00000  13    0.23319  3.623 
-   7.50972   -7.27653 1.03[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[]  \OT1/cmtt/m/n/12 95   55.15364   10.00195    2.02070  11   -2.65182  0.738 
-   3.08007   -5.73189 0.54[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[] \OT1/cmtt/m/n/12 103   27.14816    8.28733    2.02070  11   -2.65182  0.738 
-   3.08007   -5.73189 0.54[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[] \OT1/cmtt/m/n/12 104   27.43393   10.28772    0.00000  13    0.23319  3.623 
-   7.50972   -7.27653 1.03[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[] \OT1/cmtt/m/n/12 105   27.71970   12.28812    2.02070  14   12.27927 15.669 
-  21.86782   -9.58855 2.28[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[] \OT1/cmtt/m/n/12 106    0.28577    6.00117    2.02070  14   12.27927 15.669 
-  21.86782   -9.58855 2.28[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[] \OT1/cmtt/m/n/12 192    0.57154    8.00156    0.00000  13    0.23319  3.623 
-   7.50972   -7.27653 1.03[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 698--698
-[] \OT1/cmtt/m/n/12 193    0.85731   10.00195    2.02070  11   -2.65182  0.738 
-   3.08007   -5.73189 0.54[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 705--705
-[]   \OT1/cmtt/m/n/12 7   56.01095    4.00078    0.00000  12   -3.39000 -0.000 
-   1.79000   -5.18000 0.35[] 
- []
-
-LaTeX Font Info:    Try loading font information for OML+cmr on input line 724.
-
-(/usr/local/texlive/2016/texmf-dist/tex/latex/base/omlcmr.fd
-File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
-(Font)              Font shape `OML/cmm/m/it' tried instead on input line 724.
- [28]
-Overfull \hbox (2.57349pt too wide) in paragraph at lines 763--766
-[]\JY1/mc/m/n/12 今後 \OT1/cmr/m/n/12 code \JY1/mc/m/n/12 内での変数名を用語を
-一致させるため ， \OT1/cmr/m/n/12 VASP \JY1/mc/m/n/12 標準の単語を使用する ． \
-OT1/cmr/m/n/12 POSCAR
- []
-
-[29]
-Overfull \hbox (100.50618pt too wide) in paragraph at lines 797--797
-[]   \OT1/cmtt/m/n/12 1 1           # number of atoms per atomic species (one n
-umber for each atomic species)[] 
- []
-
-[30] [31] [32]
-Overfull \hbox (12.62349pt too wide) in paragraph at lines 885--888
-[]\JY1/mc/m/n/12 削除の幅は ， 原子層の厚さから推測できるように第 \OT1/cmr/m/n/
-12 2 \JY1/mc/m/n/12 入力として指定している ． \OT1/cmr/m/n/12 delete[]atoms
- []
-
-) (../split_files/chapter2/chapter2.tex [33] [34]
+]
 第 2 章
-) (../split_files/chapter3/chapter3.tex [35
-
-]
-第 3 章
-) (../split_files/chapter4/chapter4.tex [36
-
-]
-第 4 章
+LaTeX Font Info:    Font shape `JT1/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JT1/gt/m/n' tried instead on input line 7.
+LaTeX Font Info:    Font shape `JY1/mc/bx/n' in size <14.4> not available
+(Font)              Font shape `JY1/gt/m/n' tried instead on input line 7.
 File: ../.././figs/POSCAR_0_3315_46_Al.png Graphic file (type bmp)
-<../.././figs/POSCAR_0_3315_46_Al.png> [37
+<../.././figs/POSCAR_0_3315_46_Al.png> [6
 
 ]
 Overfull \hbox (144.80476pt too wide) in paragraph at lines 42--44
@@ -991,15 +636,15 @@ e http://cms.mpi.univie.ac.at/vasp/guide/node112.html
  []
 
 File: ../.././figs/thesis/thesis_004.jpeg Graphic file (type bmp)
-<../.././figs/thesis/thesis_004.jpeg> [38]
+<../.././figs/thesis/thesis_004.jpeg> [7]
 Overfull \hbox (193.13123pt too wide) in paragraph at lines 89--89
 []\OT1/cmtt/m/n/12 (Al) Source:.POSCAR_0;Expand:3,3,1;Shaped;Rotate:1/5,22.62[d
 egrees];Mirrorred;Shaped2;Cut:0.81715-0.84984[] 
  []
 
-[39]
+[8]
 File: ../.././figs/Al_3315_surface.png Graphic file (type bmp)
- <../.././figs/Al_3315_surface.png> [40] [41] [42] [43] [44]
+ <../.././figs/Al_3315_surface.png> [9] [10] [11] [12] [13]
 Overfull \hbox (1.70613pt too wide) in paragraph at lines 288--288
 [] \OT1/cmtt/m/n/12 init_x:=[ 1.0200,  1.0000,  0.9676]; init_y:=[ 0.2414,  0.0
 000,  1.1178];[] 
@@ -1035,7 +680,7 @@ Overfull \hbox (1.70613pt too wide) in paragraph at lines 288--288
 034,  0.0027];[] 
  []
 
-[45]
+[14]
 Overfull \hbox (1.70613pt too wide) in paragraph at lines 288--288
 [] \OT1/cmtt/m/n/12 init_x:=[ 0.9700,  0.9720,  0.9752]; init_y:=[ 0.9058,  0.7
 497,  0.5377];[] 
@@ -1072,129 +717,22 @@ Overfull \hbox (1.70613pt too wide) in paragraph at lines 288--288
  []
 
 File: ../.././figs/thesis_006.jpeg Graphic file (type bmp)
-<../.././figs/thesis_006.jpeg> [46] [47] [48]
+<../.././figs/thesis_006.jpeg> [15] [16] [17]
 File: ../.././figs/thesis/thesis_007.jpeg Graphic file (type bmp)
 
-<../.././figs/thesis/thesis_007.jpeg> [49] [50] [51]
+<../.././figs/thesis/thesis_007.jpeg> [18] [19] [20]
 File: ../.././figs/thesis/thesis_008.jpeg Graphic file (type bmp)
 
-<../.././figs/thesis/thesis_008.jpeg> [52]
+<../.././figs/thesis/thesis_008.jpeg> [21]
 File: ../.././figs/thesis/thesis_009.jpeg Graphic file (type bmp)
 
 <../.././figs/thesis/thesis_009.jpeg>
 File: ../.././figs/thesis/thesis_010.jpeg Graphic file (type bmp)
  <../.././figs/thesis/thesis_010.jpeg>
-[53] [54]
+[22] [23]) (../split_files/chapter3/chapter3.tex [24]
+第 3 章
 File: ../.././auto_delete/auto_delete_002.jpeg Graphic file (type bmp)
- <../.././auto_delete/auto_delete_002.jpeg> [55]
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[]   \OT1/cmtt/m/n/12 4   28.86278    8.28733    2.02070  11   -2.65182  0.738 
-   3.08007   -5.73189 0.54[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[]   \OT1/cmtt/m/n/12 5   28.57701   10.28772    0.00000  13    0.23319  3.623 
-   7.50972   -7.27653 1.03[] 
- []
-
-[56]
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[]   \OT1/cmtt/m/n/12 6   28.29124   12.28812    2.02070  14   12.27927 15.669 
-  21.86782   -9.58855 2.28[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[]   \OT1/cmtt/m/n/12 8   55.72518    6.00117    2.02070  14   12.27927 15.669 
-  21.86782   -9.58855 2.28[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[]  \OT1/cmtt/m/n/12 94   55.43941    8.00156    0.00000  13    0.23319  3.623 
-   7.50972   -7.27653 1.03[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[]  \OT1/cmtt/m/n/12 95   55.15364   10.00195    2.02070  11   -2.65182  0.738 
-   3.08007   -5.73189 0.54[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[] \OT1/cmtt/m/n/12 103   27.14816    8.28733    2.02070  11   -2.65182  0.738 
-   3.08007   -5.73189 0.54[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[] \OT1/cmtt/m/n/12 104   27.43393   10.28772    0.00000  13    0.23319  3.623 
-   7.50972   -7.27653 1.03[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[] \OT1/cmtt/m/n/12 105   27.71970   12.28812    2.02070  14   12.27927 15.669 
-  21.86782   -9.58855 2.28[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[] \OT1/cmtt/m/n/12 106    0.28577    6.00117    2.02070  14   12.27927 15.669 
-  21.86782   -9.58855 2.28[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[] \OT1/cmtt/m/n/12 192    0.57154    8.00156    0.00000  13    0.23319  3.623 
-   7.50972   -7.27653 1.03[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 608--608
-[] \OT1/cmtt/m/n/12 193    0.85731   10.00195    2.02070  11   -2.65182  0.738 
-   3.08007   -5.73189 0.54[] 
- []
-
-
-Overfull \hbox (75.80617pt too wide) in paragraph at lines 615--615
-[]   \OT1/cmtt/m/n/12 7   56.01095    4.00078    0.00000  12   -3.39000 -0.000 
-   1.79000   -5.18000 0.35[] 
- []
-
-[57]
-Overfull \hbox (2.57349pt too wide) in paragraph at lines 673--676
-[]\JY1/mc/m/n/12 今後 \OT1/cmr/m/n/12 code \JY1/mc/m/n/12 内での変数名を用語を
-一致させるため ， \OT1/cmr/m/n/12 VASP \JY1/mc/m/n/12 標準の単語を使用する ． \
-OT1/cmr/m/n/12 POSCAR
- []
-
-[58]
-Overfull \hbox (100.50618pt too wide) in paragraph at lines 707--707
-[]   \OT1/cmtt/m/n/12 1 1           # number of atoms per atomic species (one n
-umber for each atomic species)[] 
- []
-
-[59] [60] [61]
-Overfull \hbox (12.62349pt too wide) in paragraph at lines 795--798
-[]\JY1/mc/m/n/12 削除の幅は ， 原子層の厚さから推測できるように第 \OT1/cmr/m/n/
-12 2 \JY1/mc/m/n/12 入力として指定している ． \OT1/cmr/m/n/12 delete[]atoms
- []
-
-) (../split_files/chapter5/chapter5.tex [62] [63]
-第 5 章
-) (../split_files/chapter6/chapter6.tex [64
-
-]
-第 6 章
-) (../split_files/chapter7/chapter7.tex [65
-
-]
-第 7 章
-File: ../.././auto_delete/auto_delete_002.jpeg Graphic file (type bmp)
-<../.././auto_delete/auto_delete_002.jpeg> [66
+<../.././auto_delete/auto_delete_002.jpeg> [25
 
 ]
 Overfull \hbox (75.80617pt too wide) in paragraph at lines 42--42
@@ -1274,7 +812,14 @@ Overfull \hbox (75.80617pt too wide) in paragraph at lines 49--49
    1.79000   -5.18000 0.35[] 
  []
 
-[67] [68]
+[26]
+LaTeX Font Info:    Try loading font information for OML+cmr on input line 68.
+ (/usr/local/texlive/2016/texmf-dist/tex/latex/base/omlcmr.fd
+File: omlcmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OML/cmr/m/n' in size <12> not available
+(Font)              Font shape `OML/cmm/m/it' tried instead on input line 68.
+ [27]
 Overfull \hbox (2.57349pt too wide) in paragraph at lines 107--110
 []\JY1/mc/m/n/12 今後 \OT1/cmr/m/n/12 code \JY1/mc/m/n/12 内での変数名を用語を
 一致させるため ， \OT1/cmr/m/n/12 VASP \JY1/mc/m/n/12 標準の単語を使用する ． \
@@ -1287,15 +832,15 @@ Overfull \hbox (100.50618pt too wide) in paragraph at lines 141--141
 umber for each atomic species)[] 
  []
 
-[69] [70] [71]
+[28] [29] [30]
 Overfull \hbox (12.62349pt too wide) in paragraph at lines 229--232
 []\JY1/mc/m/n/12 削除の幅は ， 原子層の厚さから推測できるように第 \OT1/cmr/m/n/
 12 2 \JY1/mc/m/n/12 入力として指定している ． \OT1/cmr/m/n/12 delete[]atoms
  []
 
-[72])) [73]
+[31])) [32]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 30.
- [74
+ [33
 
 ]
 Package atveryend Info: Executing hook `AfterLastShipout' on input line 30.
@@ -1312,12 +857,12 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 30.
  ) 
 Here is how much of TeX's memory you used:
- 8712 strings out of 493683
- 132414 string characters out of 6149653
- 231721 words of memory out of 5000000
- 12063 multiletter control sequences out of 15000+600000
+ 8657 strings out of 493683
+ 131675 string characters out of 6149653
+ 231728 words of memory out of 5000000
+ 12024 multiletter control sequences out of 15000+600000
  20707 words of font info for 84 fonts, out of 8000000 for 9000
  929 hyphenation exceptions out of 8191
- 44i,14n,40p,1246b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 44i,14n,40p,1021b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on thesis.dvi (75 pages, 177776 bytes).
+Output written on thesis.dvi (34 pages, 79284 bytes).

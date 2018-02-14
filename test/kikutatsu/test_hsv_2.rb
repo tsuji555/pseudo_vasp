@@ -1,11 +1,10 @@
 require 'cairo'
-require_relative '../lib/pseudo_vasp/two_d_view.rb'
+#require_relative '../lib/pseudo_vasp/two_d_view.rb'
 
 def hsv_to_rgb(h, s, v)
   s /= 100.0
   v /= 100.0
   c = v * s
-  #x = c * (1 - ((h / 60.0) % 2 - 1).abs)                                      
   x = (h % 180.0) / 180.0
   m = v - c
   r, g, b = if h < 180 then [1 - x, x, 0]
@@ -17,13 +16,13 @@ end
 surface = Cairo::SVGSurface.new('view_2.svg', 360, 100)
 context = Cairo::Context.new(surface)
 context.set_line_width(1)
-n = 360
-dd = 360/n
+n = 10
+dd = 360/(n+1)/2
 x0 = 0
-#parameter = -5..5(10)                                                         
 n.times do |i|
   input = [dd*i,100,100]
   output = hsv_to_rgb(*input)
+  p [[input], [output]]
   context.set_source_rgb(*output)
   x0 += dd
   y0,y1 = 0, 50
