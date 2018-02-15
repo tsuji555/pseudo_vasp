@@ -321,7 +321,9 @@
 
     \subsection{背景}\label{ux80ccux666f}
 
-構造最適化が何故必要となるかを初めに詳しく記しておく．
+最安定エネルギーを求める計算は，通常初めに設定した構造からエネルギー計算を行い、徐々に構造を緩和させて行くことを繰り返すことで求められる．
+なので,不自然な初期構造から計算を始めてしまうと,最安定エネルギーを求めるまでの構造緩和の回数が多くなり，膨大な計算時間がかかってしまう．
+出来るだけ最適化された初期構造を用いることで,計算にかかる時間を少なくすることが出来る．
 
     \subsubsection{VASPの構造最適化ルーチン}\label{vaspux306eux69cbux9020ux6700ux9069ux5316ux30ebux30fcux30c1ux30f3}
 
@@ -420,7 +422,7 @@ Direct
 
     図はAl\_3315のセルサイズ変化によるエネルギー表面を示している．
 
-\begin{figure}[H][htbp]
+\begin{figure}[H]
 \centering
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/Al_3315_surface.png}
@@ -503,8 +505,9 @@ VASPはこの程度の計算であっても，一点の計算に現有の設備�
 
 \subsubsection{EAM}\label{eam}
 
-eamはembedding atom methodと呼ばれる原子間のポテンシャルで．．．
-ここ書きや．
+eamはembedding atom
+methodと呼ばれる原子間のポテンシャルで，金属結合間で共有されている電子の振る舞いを√zの依存性として再現している．
+この性質により，金属などの等方的な結合では標準的なモデルとして扱われている．
 
     \subsubsection{ディレクトリー構造}\label{ux30c7ux30a3ux30ecux30afux30c8ux30eaux30fcux69cbux9020}
 
@@ -687,7 +690,7 @@ n\_atomに原子数が入っている．esでは得られた界面エネルギ�
 
 とした．このエネルギー表面を描画すると次のとおりとなる．
 
-\begin{figure}[H][htbp]
+\begin{figure}[H]
 \centering
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/thesis/thesis_007.jpeg}
@@ -784,7 +787,7 @@ math := <<   2.00000|   0.00000|   0.24140>,
 
 これからfittingを行うと
 
-\begin{figure}[H][htbp]
+\begin{figure}[H]
 \centering
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/thesis/thesis_008.jpeg}
@@ -816,7 +819,7 @@ math := <<   2.00000|   0.00000|   0.24140>,
 
 として，この値を手動で追加して どのようになるかを確かめた．
 
-\begin{figure}[H][htbp]
+\begin{figure}[H]
 \centering
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/thesis/thesis_009.jpeg}
@@ -839,7 +842,7 @@ math := <<   2.00000|   0.00000|   0.24140>,
 先ほどの手動による計算点の追加では，手間がかかる．
 そこで，計算点は増えるが，自動で計算点を追加するようにcodeを 改良した
 
-\begin{figure}[H][htbp]
+\begin{figure}[H]
 \centering
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/thesis/thesis_010.jpeg}
@@ -860,7 +863,7 @@ math := <<   2.00000|   0.00000|   0.24140>,
 
 そこで，問題をもういちど見直すことにした．
 要は，外部緩和の計算をできるだけ減らしたいということである．
-もう一度，Alの計算結果を精査してみた．
+もう一度，Alの計算結果を精査し,以下の表にまとめた.
 
 \begin{longtable}[]{@{}lrr@{}}
 \toprule
@@ -880,8 +883,6 @@ math := <<   2.00000|   0.00000|   0.24140>,
 0\_9s/vasp\_res\_0\_101019\_310 & -4 & 0\tabularnewline
 \bottomrule
 \end{longtable}
-
-energyがminiに鳴っている，x,yのペアの一覧表をつくってください．
 
     \section{自動原子削除の実装}\label{ux81eaux52d5ux539fux5b50ux524aux9664ux306eux5b9fux88c5}
 
@@ -1138,9 +1139,28 @@ normal dx :    0.05556
 削除原子数を指定することを断念した．これには，原子のx-座標でsortして順々に選択していかねばならない．
 そのsortを指定領域で実行するコードの記述が難しそうなので，今回は見送っている．
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} 
-\end{Verbatim}
+    \section{終わりに}\label{ux7d42ux308fux308aux306b}
+
+最安定粒界エネルギーを求める過程において,これまで手動で行っていた構造最適化及び原子の削除を自動化することに成功した.
+今後の課題として
+
+    \section{謝辞}\label{ux8b1dux8f9e}
+
+本研究を進めるにあたり,多忙な中多大なるご指導ご鞭撻を頂きました西谷滋人教授に深く感謝いたします.
+また,本研究における知識の供給と研究への協力をして頂いた西谷研究室の同輩,先輩の方々に感謝の意を表します.本当にありがとうございました.
+
+    \section{参考資料}\label{ux53c2ux8003ux8cc7ux6599}
+
+{[}1{]}Trace only means that only the total pressure, i.e. the line
+http://cms.mpi.univie.ac.at/vasp/guide/node112.html {[}2{]}岩佐恭佑
+(2016).「原子削除操作を加えた対称傾角粒界のエネルギー計算」関西学院大学理工学部卒業論文(未公刊)
+{[}3{]}William H.Press, Saul A. Teukolsky, William T. Vetterling,Brian
+P.Flannery (1986) Numerical Recipes in C. The Art of Scientific
+Computing Cambridge University Press
+ウィリアム・H・プレス　ソール・A・テウコルスキー　ウィリアム・T・ベッターリング　ブライアン・P・フランネリー　丹慶勝市・奥村晴彦・佐藤峻郎・小林誠（訳）　(1993)　
+ニューメカルレシピ・イン・シー　日本語版　C言語による数値計算のレシピ　技術評論社　pp.285-289
+{[}4{]}5.7 POSCAR file
+http://cms.mpi.univie.ac.at/vasp/guide/node59.html
 
 
     % Add a bibliography block to the postdoc
