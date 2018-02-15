@@ -10,7 +10,7 @@
 
 
     
-\documentclass[11pt]{article}
+\documentclass[11pt,dvipdfmx]{jsarticle}
 
     
     
@@ -20,6 +20,7 @@
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+   \usepackage{wrapfig}
     \usepackage{graphicx}
     % We will generate all images so they have a width \maxwidth. This means
     % that they will get their normal width if they fit onto the page, but
@@ -30,13 +31,13 @@
     \makeatother
     \let\Oldincludegraphics\includegraphics
     % Set max figure width to be 80% of text width, for now hardcoded.
-    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+%    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
     % Ensure that by default, figures have no caption (until we provide a
     % proper Figure object with a Caption API and a way to capture that
     % in the conversion process - todo).
     \usepackage{caption}
-    \DeclareCaptionLabelFormat{nolabel}{}
-    \captionsetup{labelformat=nolabel}
+%    \DeclareCaptionLabelFormat{nolabel}{}
+%    \captionsetup{labelformat=nolabel}
 
     \usepackage{adjustbox} % Used to constrain images to a maximum size 
     \usepackage{xcolor} % Allow colors to be defined
@@ -292,7 +293,6 @@
 \begin{quote}
 主な作業名称:コマンド名(自動化の度合い)
 \end{quote}
-
 をまとめると 1. 原子モデル作成:modeler 1.
 粒界セルモデル作成:make\_all(自動化済み) 1. 原子削除(手動) 1.
 計算サーバへのファイル転送:scp(手動) 1. 計算設定ファイル:vasprun 1.
@@ -321,9 +321,7 @@
 
     \subsection{背景}\label{ux80ccux666f}
 
-最安定エネルギーを求める計算は，通常初めに設定した構造からエネルギー計算を行い、徐々に構造を緩和させて行くことを繰り返すことで求められる．
-なので,不自然な初期構造から計算を始めてしまうと,最安定エネルギーを求めるまでの構造緩和の回数が多くなり，膨大な計算時間がかかってしまう．
-出来るだけ最適化された初期構造を用いることで,計算にかかる時間を少なくすることが出来る．
+構造最適化が何故必要となるかを初めに詳しく記しておく．
 
     \subsubsection{VASPの構造最適化ルーチン}\label{vaspux306eux69cbux9020ux6700ux9069ux5316ux30ebux30fcux30c1ux30f3}
 
@@ -332,8 +330,12 @@ viewである．これを緩和させて最安定エネルギーを求める．
 このためには内部の原子配置と，外部のセル形状の両方を緩和させる必要がある．
 今後これらをそれぞれ内部緩和，外部緩和と呼んでいく．
 
-\includegraphics{./figs/POSCAR_0_3315_46_Al.png}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/POSCAR_0_3315_46_Al.png}
+\end{center}
 一般的な第一原理計算では構造最適化のルーチンが用意されている．
+
+\label{fig:This}
 我々が使用しているVASPにおいて用意されているルーチンは表の通りである．
 
 \begin{longtable}[]{@{}llllll@{}}
@@ -369,8 +371,12 @@ ISIF=7では，内部緩和をおこないセルは形状を保ったまま，�
 ところが，セル形状を保ったままでの体積変化は，等方的に緩和させるようである．
 
 図はISIF=3で計算した場合の結果を示した．
-\includegraphics{./figs/thesis/thesis_004.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_004.jpeg}
+\end{center}
 
+
+\label{fig:}
 粒界構造のモデルで用いられる，いびつな立方晶のセル形状から
 外部，内部緩和を全て自動で緩和させると， 外部セル形状が極端に変形する．
 いびつな立方晶のセル形状を保ったまま
@@ -414,10 +420,14 @@ Direct
 
     図はAl\_3315のセルサイズ変化によるエネルギー表面を示している．
 
-\begin{figure}
+\begin{figure}[H][htbp]
 \centering
-\includegraphics{./figs/Al_3315_surface.png}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/Al_3315_surface.png}
+\end{center}
 \caption{}
+
+\label{fig:}
 \end{figure}
 
     このエネルギー表面の特徴は次の通りである． 1. x=-8..0 1. y=-2..2 1.
@@ -493,9 +503,8 @@ VASPはこの程度の計算であっても，一点の計算に現有の設備�
 
 \subsubsection{EAM}\label{eam}
 
-eamはembedding atom
-methodと呼ばれる原子間のポテンシャルで，金属結合間で共有されている電子の振る舞いを√zの依存性として再現している．
-この性質により，金属などの等方的な結合では標準的なモデルとして扱われている．
+eamはembedding atom methodと呼ばれる原子間のポテンシャルで．．．
+ここ書きや．
 
     \subsubsection{ディレクトリー構造}\label{ux30c7ux30a3ux30ecux30afux30c8ux30eaux30fcux69cbux9020}
 
@@ -539,7 +548,6 @@ tree pseudo_vasp
 \begin{quote}
 bundler gem init -b pseudo\_vasp
 \end{quote}
-
 で作成された．
 
 libの中にeamポテンシャルのcodeが入っている．
@@ -605,8 +613,12 @@ bx + GOLD*(bx-ax)で求められる値を計算するだけで囲い込みが成
 この様子を図に示した．初期の3点は赤丸で，最終結果の3点を青丸で示している．初期の3点の中間に，青丸で示した4つ目の計算結果が追加されている．
 
 一方，テストケース{[}4{]}-{[}6{]}は囲い込みが初期の3点ではうまくいっておらず，だいぶ外側に外れた位置での計算が必要となっている．初期値のステップの大小によるロスはmnbrakの計算ルーチンによってうまく回避されている(図(b),(c))．
-\includegraphics{./figs/thesis_006.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis_006.jpeg}
+\end{center}
 初期値の取り方を間違うと最大6になるが，
+
+\label{fig:}
 概ね，囲い込みは効率良くmnbrakによって可能であることが確認できた．
 そこで，このルーチンをそのまま使ってこの後の開発を進めることとした．
 
@@ -675,10 +687,14 @@ n\_atomに原子数が入っている．esでは得られた界面エネルギ�
 
 とした．このエネルギー表面を描画すると次のとおりとなる．
 
-\begin{figure}
+\begin{figure}[H][htbp]
 \centering
-\includegraphics{./figs/thesis/thesis_007.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_007.jpeg}
+\end{center}
 \caption{cell外形の変位によるエネルギー表面．\label{spandata-label}}
+
+\label{fig:}
 \end{figure}
 
     cellの外形変位によるエネルギー表面は上図のようになる．ここで，VASPの結果との違いは次のとおりである．
@@ -768,10 +784,14 @@ math := <<   2.00000|   0.00000|   0.24140>,
 
 これからfittingを行うと
 
-\begin{figure}
+\begin{figure}[H][htbp]
 \centering
-\includegraphics{./figs/thesis/thesis_008.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_008.jpeg}
+\end{center}
 \caption{x,y軸方向のmnbrakによる最安定化の試行．¥label\{spandata-label\}}
+
+\label{fig:}
 \end{figure}
 
 となる．これはcalc\_e\_surfでの結果と違っている．
@@ -796,10 +816,14 @@ math := <<   2.00000|   0.00000|   0.24140>,
 
 として，この値を手動で追加して どのようになるかを確かめた．
 
-\begin{figure}
+\begin{figure}[H][htbp]
 \centering
-\includegraphics{./figs/thesis/thesis_009.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_009.jpeg}
+\end{center}
 \caption{範囲の最小値ペアと最大値ペアの手動追加．\label{spandata-label}}
+
+\label{fig:}
 \end{figure}
 
 その結果は，安定的なエネルギー表面が描画できている．
@@ -815,10 +839,14 @@ math := <<   2.00000|   0.00000|   0.24140>,
 先ほどの手動による計算点の追加では，手間がかかる．
 そこで，計算点は増えるが，自動で計算点を追加するようにcodeを 改良した
 
-\begin{figure}
+\begin{figure}[H][htbp]
 \centering
-\includegraphics{./figs/thesis/thesis_010.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_010.jpeg}
+\end{center}
 \caption{範囲の最小値ペアと最大値ペアを自動追加．¥label\{spandata-label\}}
+
+\label{fig:}
 \end{figure}
 
 この結果は，手動で追加した結果を再現している．しかし，
@@ -832,7 +860,7 @@ math := <<   2.00000|   0.00000|   0.24140>,
 
 そこで，問題をもういちど見直すことにした．
 要は，外部緩和の計算をできるだけ減らしたいということである．
-もう一度，Alの計算結果を精査し,以下の表にまとめた.
+もう一度，Alの計算結果を精査してみた．
 
 \begin{longtable}[]{@{}lrr@{}}
 \toprule
@@ -853,12 +881,18 @@ math := <<   2.00000|   0.00000|   0.24140>,
 \bottomrule
 \end{longtable}
 
+energyがminiに鳴っている，x,yのペアの一覧表をつくってください．
+
     \section{自動原子削除の実装}\label{ux81eaux52d5ux539fux5b50ux524aux9664ux306eux5b9fux88c5}
 
 粒界生成において，回転，並びに鏡映操作を行った後の原子配置を図に示した．
 
-\includegraphics{./auto_delete/auto_delete_002.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././auto_delete/auto_delete_002.jpeg}
+\end{center}
 削除操作前後の原子配置，8417\_186を例示．
+
+\label{fig:}
 
 ここでは，8417\_186を例にしている．8417の数字は粒界系全体の構造を表している．それぞれ，x=8,
 y=4, z=1およびtan
@@ -921,7 +955,6 @@ if x_pos < dx or  (x_pos > a_half and x_pos < a_half + dx)
 \begin{quote}
 a\_half \textless{} x\_pos \textless{} a\_half + dx
 \end{quote}
-
 を選別するのがif文以下のところである．
 
 こうして得られた削除原子のx\_posを取り出すと，
@@ -1105,19 +1138,9 @@ normal dx :    0.05556
 削除原子数を指定することを断念した．これには，原子のx-座標でsortして順々に選択していかねばならない．
 そのsortを指定領域で実行するコードの記述が難しそうなので，今回は見送っている．
 
-    \section{終わりに}\label{ux7d42ux308fux308aux306b}
-
-最安定粒界エネルギーを求める過程において,これまで手動で行っていた構造最適化及び原子の削除を自動化することに成功した.
-今後の課題として
-
     \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{参考資料}
-        \PY{n}{Trace} \PY{n}{only} \PY{n}{means} \PY{n}{that} \PY{n}{only} \PY{n}{the} \PY{n}{total} \PY{n}{pressure}\PY{p}{,} \PY{n}{i}\PY{o}{.}\PY{n}{e}\PY{o}{.} \PY{n}{the} \PY{n}{line} \PY{n}{http}\PY{p}{:}\PY{o}{/}\PY{o}{/}\PY{n}{cms}\PY{o}{.}\PY{n}{mpi}\PY{o}{.}\PY{n}{univie}\PY{o}{.}\PY{n}{ac}\PY{o}{.}\PY{n}{at}\PY{o}{/}\PY{n}{vasp}\PY{o}{/}\PY{n}{guide}\PY{o}{/}\PY{n}{node112}\PY{o}{.}\PY{n}{html}
-        \PY{err}{「}\PY{n}{原子削除操作を加えた対称傾角粒界のエネルギー計算}\PY{err}{」}　\PY{n}{岩佐恭佑}　\PY{n}{関西学院大学理工学部卒業論文}　\PY{l+m+mi}{2016}\PY{n}{年3月}　\PY{n}{p}\PY{p}{,}\PY{l+m+mi}{18}
-        \PY{err}{”}\PY{n}{Numerical} \PY{n}{Recipes} \PY{o+ow}{in} \PY{n}{C}\PY{err}{”}\PY{p}{,} \PY{n}{by} \PY{n}{W}\PY{o}{.}\PY{n}{H}\PY{o}{.}\PY{n}{Press} \PY{n}{他}\PY{p}{,}\PY{p}{(}\PY{n}{技術評論社}\PY{p}{,} \PY{l+m+mi}{1993}\PY{p}{)}\PY{p}{,} \PY{n}{pp}\PY{o}{.}\PY{l+m+mi}{285}\PY{o}{\PYZhy{}}\PY{l+m+mi}{289}
-         \PY{n}{http}\PY{p}{:}\PY{o}{/}\PY{o}{/}\PY{n}{cms}\PY{o}{.}\PY{n}{mpi}\PY{o}{.}\PY{n}{univie}\PY{o}{.}\PY{n}{ac}\PY{o}{.}\PY{n}{at}\PY{o}{/}\PY{n}{vasp}\PY{o}{/}\PY{n}{guide}\PY{o}{/}\PY{n}{node59}\PY{o}{.}\PY{n}{html}
+{\color{incolor}In [{\color{incolor} }]:} 
 \end{Verbatim}
-
 
 
     % Add a bibliography block to the postdoc
