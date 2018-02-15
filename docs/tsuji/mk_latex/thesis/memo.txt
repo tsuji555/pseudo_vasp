@@ -1,0 +1,13 @@
+\ref{vasp_manual}
+\bibitem{vasp_manual}
+VASP manual, \url{http://cms.mpi.univie.ac.at/vasp/guide/node112.html}, accessed 2018/02/15
+\bibitem{num_recipe}
+"Numerical Recipes in C", by W.H.Press他,(技術評論社, 1993), pp.285-289
+
+これから，系統的な方法を考えたが，見出せなかった．
+そこで，緩和計算のもとになる原子削除操作についての自動化を試みた．
+
+¥textgreater{}
+http://cms.mpi.univie.ac.at/vasp/guide/node59.html
+
+あるいはVASP manual, pp.43-4

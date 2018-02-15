@@ -8,19 +8,21 @@
 
     \subsection{VASPの構造最適化ルーチン}\label{vaspux306eux69cbux9020ux6700ux9069ux5316ux30ebux30fcux30c1ux30f3}
 
-図はAlの3315で作成したモデルのtop
+図\ref{Fig:3315_46}はAlの3315で作成したモデルのtop
 viewである．これを緩和させて最安定エネルギーを求める．
 このためには内部の原子配置と，外部のセル形状の両方を緩和させる必要がある．
 今後これらをそれぞれ内部緩和，外部緩和と呼んでいく．
-
+\begin{figure}[htbp]
 \begin{center}
-\includegraphics[width=150mm]{../.././figs/POSCAR_0_3315_46_Al.png}
+\includegraphics[width=75mm]{../.././figs/POSCAR_0_3315_46_Al.png}
 \end{center}
+\caption{Medeaで表示した粒界モデル(POSCAR\_0\_3315\_46\_Al)の原子配置．}
+\label{Fig:3315_46}
+\end{figure}
+
 一般的な第一原理計算では構造最適化のルーチンが用意されている．
 
-\label{fig:This}
-我々が使用しているVASPにおいて用意されているルーチンは表の通りである．
-
+我々が使用しているVASPにおいて用意されているルーチンは表の通りである\cite{vasp_manual}．
 \begin{longtable}[]{@{}llllll@{}}
 \toprule
 ISIF & force & stress tensor & ions & cell shape & cell
@@ -28,7 +30,7 @@ volume\tabularnewline
 \midrule
 \endhead
 0 & yes & no & yes & no & no\tabularnewline
-1 & yes & trace only* & yes & no & no\tabularnewline
+1 & yes & trace only & yes & no & no\tabularnewline
 2 & yes & yes & yes & no & no\tabularnewline
 3 & yes & yes & yes & yes & yes\tabularnewline
 4 & yes & yes & yes & yes & no\tabularnewline
@@ -38,12 +40,6 @@ volume\tabularnewline
 \bottomrule
 \end{longtable}
 
-\begin{itemize}
-\tightlist
-\item
-%  Trace only means that only the total pressure, i.e. the line
-%  http://cms.mpi.univie.ac.at/vasp/guide/node112.html
-\end{itemize}
 
 VASPの呼称ではionが内部原子を，cellが外部セル形状を意味する．
 
@@ -53,9 +49,15 @@ volume=noとなっており，内部緩和は行うが，cellの形状と体積�
 ISIF=7では，内部緩和をおこないセルは形状を保ったまま，体積を変化させる．
 ところが，セル形状を保ったままでの体積変化は，等方的に緩和させるようである．
 
-図はISIF=3で計算した場合の結果を示した．
+図\ref{Fig:iwasa}はISIF=3で計算した場合の結果を示した．
+\begin{figure}[h]
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/thesis/thesis_004.jpeg}
+\end{center}
+\caption{VASPによる自動外部緩和の失敗例．}
+\label{Fig:iwasa}
+\end{figure}
+\begin{center}
 \end{center}
 
 
@@ -72,8 +74,7 @@ ISIF=7では，内部緩和をおこないセルは形状を保ったまま，�
 これは系のサイズが小さく，第一原理計算VASPの計算時間が
 少なく済むからである．
 
-いかに，VASPの計算に投入する原子の情報を集めた
-POSCARと呼ばれるファイルである．
+以下は，VASPの計算に投入する原子の情報を集めたPOSCARと呼ばれるファイルである．
 
 \begin{verbatim}
 > head POSCAR_0_3315_46_Al
@@ -89,7 +90,6 @@ Direct
    0.5800000000    0.2307692308    0.0000000000 T T T
 ...以下略
 \end{verbatim}
-
 3行目から5行目にかかれた3次元ベクトルがcellの外形のa,b,cを 示している．
 \(a\)が図では\(x\)軸，\(b\)が\(y\)軸，\(c\)が\(z\)軸のベクトルの
 カーテシアン座標をオングストロームで示している．
@@ -101,24 +101,28 @@ Direct
 
     \subsection{vasp計算の結果}\label{vaspux8a08ux7b97ux306eux7d50ux679c}
 
-    図はAl\_3315のセルサイズ変化によるエネルギー表面を示している．
+    図\ref{fig:e_surface}はAl\_3315のセルサイズ変化によるエネルギー表面を示している．
 
 \begin{figure}[H]
 \centering
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/Al_3315_surface.png}
 \end{center}
-\caption{}
-
-\label{fig:}
+\caption{Al\_3315のセルサイズ変化によるエネルギー表面．}
+\label{fig:e_surface}
 \end{figure}
 
-    このエネルギー表面の特徴は次の通りである． 1. x=-8..0 1. y=-2..2 1.
-x軸方向の変化は大きい． 1. y軸方向の変化はねじれている．すなわち 1.
-x=0ではyの増加につれて上がっていくが， 1.
-x=-8ではyの増加につれて下がっている 1.
-x=-4の直線上でminimumを取っている．
-
+    このエネルギー表面の特徴は次の通りである． 
+\begin{itemize}
+\item 領域はx=-8..0 1. y=-2..2
+\item x軸方向の変化は大きい．
+\item y軸方向の変化はねじれている．すなわち 
+\begin{itemize}
+\item x=0ではyの増加につれて上がっていくが， 
+\item x=-8ではyの増加につれて下がっている 
+\end{itemize}
+\item x=-4の直線上でminimumを取っている．
+\end{itemize}
 もう少し細かくエネルギー計算をした場合と，もう少し荒くエネルギー計算をした場合で，
 最小値やその位置が大きく変わるかどうかを検証する必要がある．
 
@@ -144,7 +148,6 @@ x & y & E\tabularnewline
 0 & 2 & 0.63185\tabularnewline
 \bottomrule
 \end{longtable}
-
 これらの値は，粒界モデルのx軸，y軸を変化させ，セル形状を固定した状態で，内部緩和をおこないエネルギー計算を行っている．
 これをfittingして，最安定構造を求めるには次のMapleスクリプトで得られる．
 \begin{screen}
@@ -161,9 +164,7 @@ fit1 := z = .5026144708-0.4629870219e-2*x-0.7128049500e-2*y+
 (0.5266188957e-2*(x+4))*y+0.5395943477e-2*(x+4)^2+0.4563284219e-2*y^2
 \end{verbatim}}
 \end{screen}
-
 これで求められた関数fit1をx,yで微分し，連立方程式として解くと
-
 \begin{screen}
 {\small
 \begin{verbatim}
@@ -177,7 +178,6 @@ subs(s1,f1(x,y));
                           0.5183331423
 \end{verbatim}}
 \end{screen}
-
 として求めることが可能である．
 
 この最安定構造をできるだけ少ない手数で求めることが開発目標となる．
@@ -194,8 +194,7 @@ VASPはこの程度の計算であっても，一点の計算に現有の設備�
 eamはembedding atom
 methodと呼ばれる原子間のポテンシャルで，金属結合間で共有されている電子の振る舞いを√zの依存性として再現している．
 この性質により，金属などの等方的な結合では標準的なモデルとして扱われている．
-
-\newpage
+%\newpage
     \subsection{ディレクトリー構造}\label{ux30c7ux30a3ux30ecux30afux30c8ux30eaux30fcux69cbux9020}
 
 pseudo\_vaspに関連するファイルを作成する．
@@ -209,16 +208,16 @@ tree pseudo_vasp
 ├── README.md
 ├── Rakefile
 ├── bin
-│\UTF{00A0}\UTF{00A0} ├── console
-│\UTF{00A0}\UTF{00A0} └── setup
+│  ├── console
+│  └── setup
 ├── docs
 ├── exe
-│\UTF{00A0}\UTF{00A0} └── pseudo_vasp
+│  └── pseudo_vasp
 ├── lib
-│\UTF{00A0}\UTF{00A0} ├── pseudo_vasp
-│\UTF{00A0}\UTF{00A0} │\UTF{00A0}\UTF{00A0} ├── eam.rb
-│\UTF{00A0}\UTF{00A0} │\UTF{00A0}\UTF{00A0} └── version.rb
-│\UTF{00A0}\UTF{00A0} └── pseudo_vasp.rb
+│  ├── pseudo_vasp
+│  │  ├── eam.rb
+│  │  └── version.rb
+│  └── pseudo_vasp.rb
 ├── pseudo_vasp.gemspec
 └── test
     ├── POSCAR_0
@@ -231,15 +230,13 @@ tree pseudo_vasp
 \end{verbatim}
 
 これは，ruby gemsのライブラリーの標準構成で，
-
 \begin{quote}
-bundler gem init -b pseudo\_vasp
+> bundler gem init -b pseudo\_vasp
 \end{quote}
 で作成された．
 
 libの中にeamポテンシャルのcodeが入っている．
 testにはそれぞれの計算駆動codeを置いている． それらは，
-
 \begin{screen}
 {\small
 \begin{verbatim}
@@ -248,7 +245,6 @@ cell_relaxation.rb    外部cell変形のエネルギー
 cell_bracket.rb       cell緩和の囲い込み
 \end{verbatim}}
 \end{screen}
-
 である．
 
     \section{結果}\label{ux7d50ux679c}
@@ -257,10 +253,8 @@ cell_bracket.rb       cell緩和の囲い込み
 
 一般的な数値計算における最適化の最初の一歩は解の囲い込みである．
 数値計算のバイブルNumerical
-recipeにはそのための標準ルーチンとしてmnbrakが用意されている．
+recipeにはそのための標準ルーチンとしてmnbrakが用意されている\cite{num_recipe}．
 そこで，まずはこれをrubyで実装した．
-
-"Numerical Recipes in C", by W.H.Press他,(技術評論社, 1993), pp.285-289
 
 結果は次の通りである．
 
@@ -303,15 +297,19 @@ n_calc:   3
 bx + GOLD*(bx-ax)で求められる値を計算するだけで囲い込みが成功している．
 
 テストケース{[}2{]}は，初期の3点では囲い込んでいるかがわからず中簡点を追加計算することで求めている．
-この様子を図に示した．初期の3点は赤丸で，最終結果の3点を青丸で示している．初期の3点の中間に，青丸で示した4つ目の計算結果が追加されている．
+この様子を図\ref{fig:fit_curve}に示した．初期の3点は赤丸で，最終結果の3点を青丸で示している．初期の3点の中間に，青丸で示した4つ目の計算結果が追加されている．
 
-一方，テストケース{[}4{]}-{[}6{]}は囲い込みが初期の3点ではうまくいっておらず，だいぶ外側に外れた位置での計算が必要となっている．初期値のステップの大小によるロスはmnbrakの計算ルーチンによってうまく回避されている(図(b),(c))．
+一方，テストケース{[}4{]}-{[}6{]}は囲い込みが初期の3点ではうまくいっておらず，だいぶ外側に外れた位置での計算が必要となっている．初期値のステップの大小によるロスはmnbrakの計算ルーチンによってうまく回避されている(図\ref{fig:fit_curve}(b),(c))．
+\begin{figure}[htbp]
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/thesis_006.jpeg}
+\caption{mnbrakによる囲い込みの視覚的表示結果．}
+\label{fig:fit_curve}
 \end{center}
+\end{figure}
+
 初期値の取り方を間違うと最大6になるが，
 
-\label{fig:}
 概ね，囲い込みは効率良くmnbrakによって可能であることが確認できた．
 そこで，このルーチンをそのまま使ってこの後の開発を進めることとした．
 
@@ -400,13 +398,11 @@ n\_atomに原子数が入っている．esでは得られた界面エネルギ�
 \end{figure}
 
     cellの外形変位によるエネルギー表面は上図のようになる．ここで，VASPの結果との違いは次のとおりである．
-1.
-VASPではx=-8..0で囲い込まれているのに対して，EAMではx=-2..2で囲い込まれている
-1.
-EAMの結果はx=2およびx=-2において，yの変化に対してどちらも2次の項が優勢である．
-1.
-VASPの結果は，yの変化に対して1次の項も大きく寄与しており，さらにその傾きが逆向きに効いている．
-
+    \begin{itemize}
+\item VASPではx=-8..0で囲い込まれているのに対して，EAMではx=-2..2で囲い込まれている
+\item EAMの結果はx=2およびx=-2において，yの変化に対してどちらも2次の項が優勢である．
+\item VASPの結果は，yの変化に対して1次の項も大きく寄与しており，さらにその傾きが逆向きに効いている．
+\end{itemize}
 これが後ほど聞いてくるかもしれないので留意しておく．
 
     \section{2次元での最小化}\label{ux6b21ux5143ux3067ux306eux6700ux5c0fux5316}
@@ -464,14 +460,15 @@ def mnbrak(ax, bx, method_func=method(:func_x))
 \end{verbatim}}
 \end{screen}
 
-具体的な変更箇所は， 1. 呼び出す関数を引数として受け取り， 1.
-それを明示的に呼び出す(call)
-
+具体的な変更箇所は， 
+\begin{itemize}
+\item 呼び出す関数を引数として受け取り，
+\item それを明示的に呼び出す(call)
+\end{itemize}
 である．これによって，x軸とy軸に沿った囲い込みを行えるように変更している．
 これによって，mnbrakのcodeを書き換えること無く， 関数func\_x,
 func\_yに変位の操作を委ねている．
 これに従ってmnbrakを2次元で行うように変更すると， 呼び出し方は，
-
 \begin{screen}
 {\small
 \begin{verbatim}
@@ -479,9 +476,7 @@ func\_yに変位の操作を委ねている．
   y_min =  mnbrak(1.0, 1.02, method(:func_y) )
 \end{verbatim}}
 \end{screen}
-
 と変更することで
-
 \begin{screen}
 {\small
 \begin{verbatim}
@@ -493,24 +488,20 @@ math := <<   2.00000|   0.00000|   0.24140>,
 <   0.00000|  -3.23607|   0.37768>>;
 \end{verbatim}}
 \end{screen}
-
 と数値が得られる．
 
-これからfittingを行うと
-
+これからfittingを行うと図\ref{fig:mnbrak_stable}となる．これはcalc\_e\_surfでの結果と違っている．
+なぜなら，エネルギー表面は最安定ではなく， 鞍点となっているからである．
+したがって，もうすこし，工夫が必要である．
 \begin{figure}[H]
 \centering
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/thesis/thesis_008.jpeg}
 \end{center}
-\caption{x,y軸方向のmnbrakによる最安定化の試行．¥label\{spandata-label\}}
-
-\label{fig:}
+\caption{x,y軸方向のmnbrakによる最安定化の試行．}
+\label{fig:mnbrak_stable}
 \end{figure}
 
-となる．これはcalc\_e\_surfでの結果と違っている．
-なぜなら，エネルギー表面は最安定ではなく， 鞍点となっているからである．
-したがって，もうすこし，工夫が必要である．
 
     \subsection{手動による計算点の追加}\label{ux624bux52d5ux306bux3088ux308bux8a08ux7b97ux70b9ux306eux8ffdux52a0}
 
@@ -538,8 +529,8 @@ math := <<   2.00000|   0.00000|   0.24140>,
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/thesis/thesis_009.jpeg}
 \end{center}
-\caption{範囲の最小値ペアと最大値ペアの手動追加．\label{spandata-label}}
-
+\caption{範囲の最小値ペアと最大値ペアの手動追加．}
+\label{spandata-label}
 \label{fig:}
 \end{figure}
 
@@ -555,14 +546,12 @@ math := <<   2.00000|   0.00000|   0.24140>,
 
 先ほどの手動による計算点の追加では，手間がかかる．
 そこで，計算点は増えるが，自動で計算点を追加するようにcodeを 改良した
-
 \begin{figure}[H]
 \centering
 \begin{center}
 \includegraphics[width=150mm]{../.././figs/thesis/thesis_010.jpeg}
 \end{center}
-\caption{範囲の最小値ペアと最大値ペアを自動追加．¥label\{spandata-label\}}
-
+\caption{範囲の最小値ペアと最大値ペアを自動追加．}
 \label{fig:}
 \end{figure}
 
@@ -597,5 +586,8 @@ math := <<   2.00000|   0.00000|   0.24140>,
 0\_9s/vasp\_res\_0\_101019\_310 & -4 & 0\tabularnewline
 \bottomrule
 \end{longtable}
+
+これから，系統的な方法を考えたが，見出せなかった．
+そこで，緩和計算のもとになる原子削除操作についての自動化を試みた．
 
     

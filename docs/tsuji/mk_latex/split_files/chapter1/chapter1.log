@@ -1,19 +1,19 @@
-This is e-pTeX, Version 3.14159265-p3.7-160201-2.6 (utf8.euc) (TeX Live 2016) (preloaded format=platex 2017.1.26)  15 FEB 2018 13:39
+This is e-pTeX, Version 3.14159265-p3.7-160201-2.6 (utf8.euc) (TeX Live 2016) (preloaded format=platex 2017.1.26)  15 FEB 2018 12:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**chapter4.tex
-(./chapter4.tex
+**chapter1.tex
+(./chapter1.tex
 pLaTeX2e <2016/11/29> (based on LaTeX2e <2017/01/01>)
 Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
-./chapter4.tex:1: Undefined control sequence.
+./chapter1.tex:1: Undefined control sequence.
 l.1 \chapter
-            {終わりに}\label{ux7d42ux308fux308aux306b}
+            {はじめに}\label{ux306fux3058ux3081ux306b}
 ? 
-./chapter4.tex:1: Emergency stop.
+./chapter1.tex:1: Emergency stop.
 l.1 \chapter
-            {終わりに}\label{ux7d42ux308fux308aux306b}
+            {はじめに}\label{ux306fux3058ux3081ux306b}
 End of file on the terminal!
 
  
