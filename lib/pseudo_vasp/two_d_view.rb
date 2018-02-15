@@ -15,20 +15,20 @@ class TwoDView < Viewer
     @data = data
     @pos = data.inject([]) { |ret, idata| ret << [idata[:x], idata[:y], idata[:z]] }
     @nl = data.inject([]) { |ret, idata| ret << idata[:nl].size }
-    @normalized_nl = normalize(@nl, rev: true)
+    @normalized_nl = normalize(@nl, 'nl', rev: true)
     @ene = data.inject([]) { |ret, idata| ret << idata[:ene] }
     @normalized_ene = normalize(@ene)
     @ratio = data.inject([]) { |ret, idata| ret << idata[:ratio] }
-    @normalized_ratio = normalize(@ratio)
+    @normalized_ratio = normalize(@ratio, 'ratio')
     super(@pos)
   end
 
-  def normalize(enes, opts = { rev: false })
+  def normalize(enes, sel='ene', opts = { rev: false })
     start = 180
     min_e = enes.sort[0]
     max_e = enes.sort[-1]
     mid_e = 0.3456
-    printf("min_e = %7.4f [eV]\nmax_e = %7.4f [eV]\n", min_e, max_e)
+    printf("min_#{sel} = %7.4f [eV]\nmax_#{sel} = %7.4f [eV]\n", min_e, max_e)
     #    p max_e=-2.8081
     #coeff = (360 - start) / (max_e - min_e)
     #if opts[:rev]

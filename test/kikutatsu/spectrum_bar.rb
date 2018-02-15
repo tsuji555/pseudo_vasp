@@ -76,7 +76,9 @@ n.times do |i|
 end
 $context.set_source_rgb([0,0,0])
 $context.fill
-
+p $context.font_face
+p $context.font_size
+exit
 
 draw_line(0,70,360,70)
 draw_line(0,65,0,70)
@@ -91,5 +93,6 @@ rot_dev = 12
   p hsv_to_rgb_full(mark/360.0*240, 100, 100)
 end
 p hsv_to_rgb2(359,100,100)
+
 surface.finish
 system "open -a safari view_2.svg"
