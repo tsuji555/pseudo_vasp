@@ -10,7 +10,7 @@
 
 
     
-\documentclass[11pt]{article}
+\documentclass[11pt,dvipdfmx]{jsarticle}
 
     
     
@@ -20,6 +20,7 @@
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+   \usepackage{wrapfig}
     \usepackage{graphicx}
     % We will generate all images so they have a width \maxwidth. This means
     % that they will get their normal width if they fit onto the page, but
@@ -30,13 +31,13 @@
     \makeatother
     \let\Oldincludegraphics\includegraphics
     % Set max figure width to be 80% of text width, for now hardcoded.
-    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+%    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
     % Ensure that by default, figures have no caption (until we provide a
     % proper Figure object with a Caption API and a way to capture that
     % in the conversion process - todo).
     \usepackage{caption}
-    \DeclareCaptionLabelFormat{nolabel}{}
-    \captionsetup{labelformat=nolabel}
+%    \DeclareCaptionLabelFormat{nolabel}{}
+%    \captionsetup{labelformat=nolabel}
 
     \usepackage{adjustbox} % Used to constrain images to a maximum size 
     \usepackage{xcolor} % Allow colors to be defined
@@ -292,7 +293,6 @@
 \begin{quote}
 主な作業名称:コマンド名(自動化の度合い)
 \end{quote}
-
 をまとめると 1. 原子モデル作成:modeler 1.
 粒界セルモデル作成:make\_all(自動化済み) 1. 原子削除(手動) 1.
 計算サーバへのファイル転送:scp(手動) 1. 計算設定ファイル:vasprun 1.
@@ -332,8 +332,12 @@ viewである．これを緩和させて最安定エネルギーを求める．
 このためには内部の原子配置と，外部のセル形状の両方を緩和させる必要がある．
 今後これらをそれぞれ内部緩和，外部緩和と呼んでいく．
 
-\includegraphics{./figs/POSCAR_0_3315_46_Al.png}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/POSCAR_0_3315_46_Al.png}
+\end{center}
 一般的な第一原理計算では構造最適化のルーチンが用意されている．
+
+\label{fig:This}
 我々が使用しているVASPにおいて用意されているルーチンは表の通りである．
 
 \begin{longtable}[]{@{}llllll@{}}
@@ -369,8 +373,12 @@ ISIF=7では，内部緩和をおこないセルは形状を保ったまま，�
 ところが，セル形状を保ったままでの体積変化は，等方的に緩和させるようである．
 
 図はISIF=3で計算した場合の結果を示した．
-\includegraphics{./figs/thesis/thesis_004.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_004.jpeg}
+\end{center}
 
+
+\label{fig:}
 粒界構造のモデルで用いられる，いびつな立方晶のセル形状から
 外部，内部緩和を全て自動で緩和させると， 外部セル形状が極端に変形する．
 いびつな立方晶のセル形状を保ったまま
@@ -414,10 +422,14 @@ Direct
 
     図はAl\_3315のセルサイズ変化によるエネルギー表面を示している．
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics{./figs/Al_3315_surface.png}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/Al_3315_surface.png}
+\end{center}
 \caption{}
+
+\label{fig:}
 \end{figure}
 
     このエネルギー表面の特徴は次の通りである． 1. x=-8..0 1. y=-2..2 1.
@@ -539,7 +551,6 @@ tree pseudo_vasp
 \begin{quote}
 bundler gem init -b pseudo\_vasp
 \end{quote}
-
 で作成された．
 
 libの中にeamポテンシャルのcodeが入っている．
@@ -605,8 +616,12 @@ bx + GOLD*(bx-ax)で求められる値を計算するだけで囲い込みが成
 この様子を図に示した．初期の3点は赤丸で，最終結果の3点を青丸で示している．初期の3点の中間に，青丸で示した4つ目の計算結果が追加されている．
 
 一方，テストケース{[}4{]}-{[}6{]}は囲い込みが初期の3点ではうまくいっておらず，だいぶ外側に外れた位置での計算が必要となっている．初期値のステップの大小によるロスはmnbrakの計算ルーチンによってうまく回避されている(図(b),(c))．
-\includegraphics{./figs/thesis_006.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis_006.jpeg}
+\end{center}
 初期値の取り方を間違うと最大6になるが，
+
+\label{fig:}
 概ね，囲い込みは効率良くmnbrakによって可能であることが確認できた．
 そこで，このルーチンをそのまま使ってこの後の開発を進めることとした．
 
@@ -675,10 +690,14 @@ n\_atomに原子数が入っている．esでは得られた界面エネルギ�
 
 とした．このエネルギー表面を描画すると次のとおりとなる．
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics{./figs/thesis/thesis_007.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_007.jpeg}
+\end{center}
 \caption{cell外形の変位によるエネルギー表面．\label{spandata-label}}
+
+\label{fig:}
 \end{figure}
 
     cellの外形変位によるエネルギー表面は上図のようになる．ここで，VASPの結果との違いは次のとおりである．
@@ -768,10 +787,14 @@ math := <<   2.00000|   0.00000|   0.24140>,
 
 これからfittingを行うと
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics{./figs/thesis/thesis_008.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_008.jpeg}
+\end{center}
 \caption{x,y軸方向のmnbrakによる最安定化の試行．¥label\{spandata-label\}}
+
+\label{fig:}
 \end{figure}
 
 となる．これはcalc\_e\_surfでの結果と違っている．
@@ -796,10 +819,14 @@ math := <<   2.00000|   0.00000|   0.24140>,
 
 として，この値を手動で追加して どのようになるかを確かめた．
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics{./figs/thesis/thesis_009.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_009.jpeg}
+\end{center}
 \caption{範囲の最小値ペアと最大値ペアの手動追加．\label{spandata-label}}
+
+\label{fig:}
 \end{figure}
 
 その結果は，安定的なエネルギー表面が描画できている．
@@ -815,10 +842,14 @@ math := <<   2.00000|   0.00000|   0.24140>,
 先ほどの手動による計算点の追加では，手間がかかる．
 そこで，計算点は増えるが，自動で計算点を追加するようにcodeを 改良した
 
-\begin{figure}
+\begin{figure}[H]
 \centering
-\includegraphics{./figs/thesis/thesis_010.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././figs/thesis/thesis_010.jpeg}
+\end{center}
 \caption{範囲の最小値ペアと最大値ペアを自動追加．¥label\{spandata-label\}}
+
+\label{fig:}
 \end{figure}
 
 この結果は，手動で追加した結果を再現している．しかし，
@@ -857,8 +888,12 @@ math := <<   2.00000|   0.00000|   0.24140>,
 
 粒界生成において，回転，並びに鏡映操作を行った後の原子配置を図に示した．
 
-\includegraphics{./auto_delete/auto_delete_002.jpeg}
+\begin{center}
+\includegraphics[width=150mm]{../.././auto_delete/auto_delete_002.jpeg}
+\end{center}
 削除操作前後の原子配置，8417\_186を例示．
+
+\label{fig:}
 
 ここでは，8417\_186を例にしている．8417の数字は粒界系全体の構造を表している．それぞれ，x=8,
 y=4, z=1およびtan
@@ -921,7 +956,6 @@ if x_pos < dx or  (x_pos > a_half and x_pos < a_half + dx)
 \begin{quote}
 a\_half \textless{} x\_pos \textless{} a\_half + dx
 \end{quote}
-
 を選別するのがif文以下のところである．
 
 こうして得られた削除原子のx\_posを取り出すと，
@@ -1110,14 +1144,23 @@ normal dx :    0.05556
 最安定粒界エネルギーを求める過程において,これまで手動で行っていた構造最適化及び原子の削除を自動化することに成功した.
 今後の課題として
 
-    \begin{Verbatim}[commandchars=\\\{\}]
-{\color{incolor}In [{\color{incolor} }]:} \PY{n}{参考資料}
-        \PY{n}{Trace} \PY{n}{only} \PY{n}{means} \PY{n}{that} \PY{n}{only} \PY{n}{the} \PY{n}{total} \PY{n}{pressure}\PY{p}{,} \PY{n}{i}\PY{o}{.}\PY{n}{e}\PY{o}{.} \PY{n}{the} \PY{n}{line} \PY{n}{http}\PY{p}{:}\PY{o}{/}\PY{o}{/}\PY{n}{cms}\PY{o}{.}\PY{n}{mpi}\PY{o}{.}\PY{n}{univie}\PY{o}{.}\PY{n}{ac}\PY{o}{.}\PY{n}{at}\PY{o}{/}\PY{n}{vasp}\PY{o}{/}\PY{n}{guide}\PY{o}{/}\PY{n}{node112}\PY{o}{.}\PY{n}{html}
-        \PY{err}{「}\PY{n}{原子削除操作を加えた対称傾角粒界のエネルギー計算}\PY{err}{」}　\PY{n}{岩佐恭佑}　\PY{n}{関西学院大学理工学部卒業論文}　\PY{l+m+mi}{2016}\PY{n}{年3月}　\PY{n}{p}\PY{p}{,}\PY{l+m+mi}{18}
-        \PY{err}{”}\PY{n}{Numerical} \PY{n}{Recipes} \PY{o+ow}{in} \PY{n}{C}\PY{err}{”}\PY{p}{,} \PY{n}{by} \PY{n}{W}\PY{o}{.}\PY{n}{H}\PY{o}{.}\PY{n}{Press} \PY{n}{他}\PY{p}{,}\PY{p}{(}\PY{n}{技術評論社}\PY{p}{,} \PY{l+m+mi}{1993}\PY{p}{)}\PY{p}{,} \PY{n}{pp}\PY{o}{.}\PY{l+m+mi}{285}\PY{o}{\PYZhy{}}\PY{l+m+mi}{289}
-         \PY{n}{http}\PY{p}{:}\PY{o}{/}\PY{o}{/}\PY{n}{cms}\PY{o}{.}\PY{n}{mpi}\PY{o}{.}\PY{n}{univie}\PY{o}{.}\PY{n}{ac}\PY{o}{.}\PY{n}{at}\PY{o}{/}\PY{n}{vasp}\PY{o}{/}\PY{n}{guide}\PY{o}{/}\PY{n}{node59}\PY{o}{.}\PY{n}{html}
-\end{Verbatim}
+    \section{謝辞}\label{ux8b1dux8f9e}
 
+本研究を進めるにあたり,多忙な中多大なるご指導ご鞭撻を頂きました西谷滋人教授に深く感謝いたします.
+また,本研究における知識の供給と研究への協力をして頂いた西谷研究室の同輩,先輩の方々に感謝の意を表します.本当にありがとうございました.
+
+    \section{参考資料}\label{ux53c2ux8003ux8cc7ux6599}
+
+{[}1{]}Trace only means that only the total pressure, i.e. the line
+http://cms.mpi.univie.ac.at/vasp/guide/node112.html {[}2{]}岩佐恭佑
+(2016).「原子削除操作を加えた対称傾角粒界のエネルギー計算」関西学院大学理工学部卒業論文(未公刊)
+{[}3{]}William H.Press, Saul A. Teukolsky, William T. Vetterling,Brian
+P.Flannery (1986) Numerical Recipes in C. The Art of Scientific
+Computing Cambridge University Press
+ウィリアム・H・プレス　ソール・A・テウコルスキー　ウィリアム・T・ベッターリング　ブライアン・P・フランネリー　丹慶勝市・奥村晴彦・佐藤峻郎・小林誠（訳）　(1993)　
+ニューメカルレシピ・イン・シー　日本語版　C言語による数値計算のレシピ　技術評論社　pp.285-289
+{[}4{]}5.7 POSCAR file
+http://cms.mpi.univie.ac.at/vasp/guide/node59.html
 
 
     % Add a bibliography block to the postdoc
